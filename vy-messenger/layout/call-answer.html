@@ -1,0 +1,260 @@
+{strip}
+
+
+{assign var=user_avatar value="{$user.avatar}"}
+{assign var=connecting value="yes"}
+
+{include "{dirname(__DIR__)}/calls-header.html"}
+
+
+
+
+{if $call_type == 'video'}
+<video playsinline autoplay id="recipient-video-element"></video>
+<video playsinline  autoplay muted id="my-video-element"></video>
+{else}
+<audio autoplay id="recipient-audio-element"></audio>
+<audio autoplay muted id="my-audio-element"></audio>
+{/if}
+
+ 
+</div>
+
+<script>
+var recipientId = '{$user.id}';
+var recipient_name = '{$user.fullname}';
+var my_id = '{$this->USER.id}';
+var my_name = '{$this->USER.fullname}';
+var avatar = '{$this->USER.profile_photo}'; 
+var set_media = {$type};
+var call_type = '{$call_type}';
+var _close = '{$close}';
+{literal}
+
+var localStream;
+var my_media_element = call_type == 'video' ? $('#my-video-element') : $('#my-audio-element');
+var recipient_media_element = call_type == 'video' ? $('#recipient-video-element') : $('#recipient-audio-element');
+
+var end_time;
+ 
+ if(iframe == 'yes'){  
+if(typeof peer == 'undefined')
+	var peer = window._peer;
+if(typeof socket == 'undefined')
+	var socket = window.sio;
+}
+
+	function closeIframe(){
+	setTimeout(function(){
+	/*
+	var parent_container = window.parent.document.getElementById('audio-video-mob-conference');
+	parent_container.style.display='none'; 
+	parent_container.innerHTML = '';*/
+	
+	window.parent.messenger.removeVideoAudioConferenceIframe();
+	},1500);
+ 
+	}
+$(function() {
+
+
+if(_close == 'yes' && iframe != 'yes')
+	return window.close();
+	else if(_close == 'yes' && iframe == 'yes')
+		return closeIframe();
+ 
+if(typeof __j == 'undefined'){
+   var __j = function(a){return $(a);};
+}
+
+
+	
+const timer = new Timer();
+
+
+
+
+   // Get audio/video stream
+		// Compatibility shim
+
+
+
+
+/*
+
+   // Get audio/video stream
+    navigator.mediaDevices.getUserMedia(set_media).then(stream => {
+	
+        // Set my audio/video displays
+		my_media_element.srcObject = stream;
+		
+        window.localStream = stream;
+        // step2();
+    }, function(err) {
+ 
+		$('#my-video-element').replaceWith('<div id="calling-my-video-err">'+err+'</div>');
+		socket.emit("call_unavailable_stream", recipientId);
+    });
+	*/
+ 
+    function receiveNotificationsFromRecipient(){
+		
+		
+		
+		// recipient hang up the call
+		socket.on("call_finished", function(uid){ 
+			if(uid != my_id) return;
+ 
+			callEnded();
+		});
+
+		
+		
+	}
+ 
+
+
+	redial = function(){
+		
+		window.location = '/messenger?view_as=json&cmd=call&action=call&type='+call_type+'&userid='+recipientId;
+	
+	}
+    callEnded = function() {  
+
+        if(existingCall) existingCall.close();
+		socket.emit("call_finished", recipientId);
+        $('#hangup').addClass('__none');
+        $('#redial').removeClass('__none');
+		$('#important').removeClass('connected');
+		$('#recipient-video-element').removeAttr('src');
+		if(window.localStream) {
+			if(iframe == 'yes')
+					localStream.getAudioTracks()[0].stop();
+				else
+					window.localStream.getAudioTracks()[0].stop();
+
+		//window.localStream.getAudioTracks()[1].stop();
+		//window.localStream.getAudioTracks().forEach(track => track.stop())
+		}
+		setTimeout(function(){
+
+		timer.stop();
+		$('#calling_status').text(lang.call_ended);
+		if(end_time)
+			$('#end-time').text(end_time);
+			if( iframe != 'yes')	
+				window.close();
+		},1000);
+		if( iframe == 'yes')
+		closeIframe();
+ 
+    }
+    hangUpCall = function() {
+
+        callEnded();
+		if( iframe != 'yes')
+        setTimeout(function(){window.close();},1500);
+		else{
+		closeIframe();
+		}
+ 
+    };
+ 
+			function startTimer(){
+			
+			timer.start(); 
+			
+			timer.addEventListener('secondsUpdated', function (e) {
+				$('#calling_status').text(timer.getTimeValues().toString());
+				if(iframe != 'yes') document.title=timer.getTimeValues().toString();
+				end_time = timer.getTimeValues().toString();
+			});
+			
+			}
+    function createAnswer(call) {
+
+		
+		
+        // Wait for stream on the call, then set peer video display
+        call.on('stream', function(stream) {
+		
+		
+
+			
+			
+            $('#important').addClass('connected');
+ 
+			
+            setTimeout(function(){
+			
+			
+					  
+					  recipient_media_element[0].srcObject = stream;
+					  recipient_media_element[0].onloadedmetadata = function(e) {
+						socket.emit("call_started", recipientId);
+						startTimer();
+					  };
+			 
+				
+				
+			
+			},100);
+        });
+        // UI stuff
+        call.on('close', callEnded);
+
+
+    }
+
+		
+		
+		
+		if(window.localStream) {
+		
+		if(iframe == 'yes')
+			localStream.getTracks().forEach(track => track.stop());
+		else
+			window.localStream.getTracks().forEach(track => track.stop());
+			
+		}
+
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+        var r = true;
+        // Get audio/video stream
+
+		navigator.mediaDevices.getUserMedia(set_media).then(stream => {
+ 
+        // Set my audio/video displays
+		my_media_element[0].srcObject = stream;
+		
+        window.localStream = stream;
+		
+		call.answer(stream);
+		createAnswer(call);
+		// answer notification
+		socket.emit("call_answered", recipientId);
+		receiveNotificationsFromRecipient();
+		
+        }).catch(function(err){
+ 
+		$('#my-video-element').replaceWith('<div id="calling-my-video-err">'+err+'</div>');
+		socket.emit("call_unavailable_stream", recipientId);
+	 
+        });
+ 
+
+	
+	
+});
+
+{/literal}
+
+</script>
+
+
+
+
+
+ 
+{/strip}

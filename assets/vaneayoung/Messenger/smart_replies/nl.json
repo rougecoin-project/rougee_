@@ -1,0 +1,110 @@
+[
+    {
+        "input": [
+            "hi",
+            "hello",
+            "hey",
+            "hey there"
+        ],
+        "output": [
+            "Hello",
+            "Hey",
+            "Hey there",
+            "How are you?"
+        ]
+    },
+    {
+        "input": [
+            "how are you",
+            "howre you",
+            "hows it going"
+        ],
+        "output": [
+            "I'm good.",
+            "I am good.",
+            "It's going good.",
+            "Great!"
+        ]
+    },
+    {
+        "input": [
+            "are you on your way",
+            "are you on the way",
+            "on the way",
+            "are you coming"
+        ],
+        "output": [
+            "Yes",
+            "No, yet to leave.",
+            "Yup, stuck in traffic",
+            "Yes, I am."
+        ]
+    },
+    {
+        "input": [
+            "running late sorry",
+            "im running late",
+            "running late"
+        ],
+        "output": [
+            "Its alright",
+            "Its ok.",
+            "Where are you now?",
+            "Waiting, please come soon."
+        ]
+    },
+    {
+        "input": [
+            "not well",
+            "im not well",
+            "i cant come"
+        ],
+        "output": [
+            "What happened?",
+            "Oh alright",
+            "Oh ok",
+            "Take care"
+        ]
+    },
+    {
+        "input": [
+            "i will not be able to make it",
+            "will not be able to make it",
+            "cant make it"
+        ],
+        "output": [
+            "What happened?",
+            "Is everything okay?",
+            "Is everything alright?",
+            "That's alright."
+        ]
+    },
+    {
+        "input": [
+            "good night",
+            "gn",
+            "gud night",
+            "good nite"
+        ],
+        "output": [
+            "Good night",
+            "Good bye",
+            "Sleep well",
+            "Great"
+        ]
+    },
+    {
+        "input": [
+            "is your friend coming with us",
+            "is he coming with us",
+            "is she coming with us",
+            "are they coming with us"
+        ],
+        "output": [
+            "Yes",
+            "No",
+            "I'm not sure",
+            "I don't think so"
+        ]
+    }
+]

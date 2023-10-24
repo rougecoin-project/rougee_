@@ -1,0 +1,256 @@
+<div class="navbar navbar-default navbar-fixed-top">
+	<nav class="header-fixed1000">
+		<div class="container-fluid">
+        <div class="header-left">
+        <div class="wow_hdr_innr_left">
+				<a class="brand header-brand" href="<?php echo $wo['config']['site_url']; ?>">
+					<img width="130" src="<?php echo $wo['config']['theme_url'];?>/img/logo.<?php echo $wo['config']['logo_extension'];?>" alt="<?php echo $wo['config']['siteName'];?> Logo"/>
+				</a>
+			</div>
+        <ul class="nav navbar-nav" id="wo_home_search">
+          <li class="dropdown search-container">
+            <form class="navbar-form navbar-left col-lg-12 form-group" data-toggle="dropdown" role="button" id="navbar-searchbox" role="search">
+              <div class="form-group inner-addon <?php echo Wo_RightToLeft('left-addon');?> ">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather main-color feather-search glyphicon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" class="form-control search-input" onkeyup="Wo_DetectSearchType(this.value), document.getElementById('wo_repeat_search').innerHTML = escapeHtml(this.value)" placeholder="<?php echo TextForMode('search_header_label'); ?>" dir="auto" <?php if ($wo['loggedin'] == true) { echo 'onfocus="Wo_GetRecentSearchs()"';}?>>
+              </div>
+            </form>
+            <ul class="dropdown-menu search-dropdown-container" style="margin-left:7px;" role="menu">
+              <div class="search-dropdown-result">
+                <?php
+                if ($wo['loggedin'] == true) {
+                  foreach (Wo_GetRecentSerachs() as $wo['result']) {
+                    if (!empty($wo['result'])) {
+                      echo Wo_LoadPage('header/search');
+                    }
+                  }
+                }
+
+                ?>
+              </div>
+              <li>
+                <span class="search-advanced-container">
+                  <a href="<?php echo Wo_SeoLink('index.php?link1=search');?>" class="search-advanced-link" data-ajax="?link1=search">
+                    <div class="feather-svg-parent">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+					</div>
+					<span style="vertical-align: middle;display: table-cell;padding-left: 10px;">
+						<?php echo $wo['lang']['advanced_search']; ?>
+						<span id="wo_repeat_search"></span>
+					</span>
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        </div>
+        <div class="header_center">
+          <?php if($wo['config']['site_url'] == $wo['config']['site_url']){
+            
+          } ?>
+          <a href="<?php echo $wo['config']['site_url']; ?>" data-ajax="?index.php?link1=home" class="<?php echo $wo['page'] == 'home' ? 'active' : ''; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="28.547" height="30.133" viewBox="0 0 28.547 30.133"><path id="Path_4858" data-name="Path 4858" d="M3558.547,1293.547a1.571,1.571,0,0,1-1.586,1.586h-25.375a1.57,1.57,0,0,1-1.585-1.586v-16.953a1.429,1.429,0,0,1,.159-.682,1.521,1.521,0,0,1,.443-.555l12.688-10.007a1.56,1.56,0,0,1,1.967,0l12.688,10.007a1.536,1.536,0,0,1,.443.555,1.441,1.441,0,0,1,.159.682Zm-22.2-12.687a7.93,7.93,0,1,0,15.86,0h-3.171a4.758,4.758,0,0,1-9.516,0Z" transform="translate(-3530 -1265)" fill="#fff"/></svg></a>
+          <?php if ($wo['config']['pages'] == 1) { 
+			$my_pages_text = $wo['lang']['my_pages'];
+			$my_pages_page = 'pages';
+			if (!$wo['config']['can_use_pages']) {
+				$my_pages_text = $wo['lang']['liked_pages'];
+			  $my_pages_page = 'liked-pages';
+			}
+		?>
+<a href="<?php echo Wo_SeoLink('index.php?link1='.$my_pages_page); ?>" class="<?php echo $wo['page'] == 'page' ? 'active' : ''; ?>" data-ajax="?link1=<?php echo $my_pages_page; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="28.491" height="27.563" viewBox="0 0 28.491 27.563"><path id="Path_5008" data-name="Path 5008" d="M3586.9,2224.309v7.253H3584V2204h27.766a.652.652,0,0,1,.363.1.645.645,0,0,1,.261.261.621.621,0,0,1,.1.363.652.652,0,0,1-.1.363l-5.179,9.067,5.179,9.066a.651.651,0,0,1,.1.363.621.621,0,0,1-.1.363.735.735,0,0,1-.624.362Zm0-17.408v14.507h21.107l-4.134-7.253,4.134-7.254Z" transform="translate(-3584 -2204)" fill="#fff"/></svg></a>
+		<?php } ?>
+    <?php if ($wo['config']['groups'] == 1) { 
+			$my_groups_text = $wo['lang']['my_groups'];
+			$my_groups_page = 'groups';
+			if (!$wo['config']['can_use_groups']) {
+				$my_groups_text = $wo['lang']['joined_groups'];
+			  $my_groups_page = 'joined_groups';
+			}
+			?>
+          <a href="<?php echo Wo_SeoLink('index.php?link1='.$my_groups_page); ?>" class="<?php echo $wo['page'] == 'groups' ? 'active' : ''; ?>" data-ajax="?link1=<?php echo $my_groups_page; ?>"><svg version="1.1" id="Capa_1" width="28.491" height="27.563" fill="white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="80.13px" height="80.13px" viewBox="0 0 80.13 80.13" style="enable-background:new 0 0 80.13 80.13;" xml:space="preserve"
+	>
+<g>
+	<path d="M48.355,17.922c3.705,2.323,6.303,6.254,6.776,10.817c1.511,0.706,3.188,1.112,4.966,1.112
+		c6.491,0,11.752-5.261,11.752-11.751c0-6.491-5.261-11.752-11.752-11.752C53.668,6.35,48.453,11.517,48.355,17.922z M40.656,41.984
+		c6.491,0,11.752-5.262,11.752-11.752s-5.262-11.751-11.752-11.751c-6.49,0-11.754,5.262-11.754,11.752S34.166,41.984,40.656,41.984
+		z M45.641,42.785h-9.972c-8.297,0-15.047,6.751-15.047,15.048v12.195l0.031,0.191l0.84,0.263
+		c7.918,2.474,14.797,3.299,20.459,3.299c11.059,0,17.469-3.153,17.864-3.354l0.785-0.397h0.084V57.833
+		C60.688,49.536,53.938,42.785,45.641,42.785z M65.084,30.653h-9.895c-0.107,3.959-1.797,7.524-4.47,10.088
+		c7.375,2.193,12.771,9.032,12.771,17.11v3.758c9.77-0.358,15.4-3.127,15.771-3.313l0.785-0.398h0.084V45.699
+		C80.13,37.403,73.38,30.653,65.084,30.653z M20.035,29.853c2.299,0,4.438-0.671,6.25-1.814c0.576-3.757,2.59-7.04,5.467-9.276
+		c0.012-0.22,0.033-0.438,0.033-0.66c0-6.491-5.262-11.752-11.75-11.752c-6.492,0-11.752,5.261-11.752,11.752
+		C8.283,24.591,13.543,29.853,20.035,29.853z M30.589,40.741c-2.66-2.551-4.344-6.097-4.467-10.032
+		c-0.367-0.027-0.73-0.056-1.104-0.056h-9.971C6.75,30.653,0,37.403,0,45.699v12.197l0.031,0.188l0.84,0.265
+		c6.352,1.983,12.021,2.897,16.945,3.185v-3.683C17.818,49.773,23.212,42.936,30.589,40.741z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg></a>
+		<?php } ?>
+		<?php if ($wo['config']['classified'] == 1) { ?>
+      		<a href="<?php echo Wo_SeoLink('index.php?link1=products'); ?>" class="<?php echo $wo['page'] == 'products' ? 'active' : ''; ?>" data-ajax="?link1=products"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><g id="Marketplace" transform="translate(-1159 -21)"><path id="Path_4887" data-name="Path 4887" d="M3387.6,1446.51v13.09a1.386,1.386,0,0,1-1.4,1.4h-22.4a1.386,1.386,0,0,1-1.4-1.4v-13.09a5.585,5.585,0,0,1-1.4-3.71v-8.4a1.387,1.387,0,0,1,1.4-1.4h25.2a1.386,1.386,0,0,1,1.4,1.4v8.4A5.637,5.637,0,0,1,3387.6,1446.51Zm-9.8-3.71a1.4,1.4,0,1,1,2.8,0,2.8,2.8,0,0,0,5.6,0v-7h-22.4v7a2.8,2.8,0,0,0,5.6,0,1.4,1.4,0,1,1,2.8,0,2.8,2.8,0,0,0,5.6,0Z" transform="translate(-2202 -1412)" fill="#fff"/></g></svg></a>
+		<?php } ?>
+        </div>
+        <?php
+        if ($wo['loggedin'] == true) {
+        echo Wo_LoadPage('header/loggedin-header');
+        } else {
+        echo Wo_LoadPage('header/main-header');
+        }
+        ?>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="barloading"></div>
+	
+<script type="text/javascript">
+
+jQuery(document).ready(function($) {
+  $(".search-input").keydown(function(event) {
+    if (event.keyCode == 13 && event.shiftKey == 0) {
+      event.preventDefault();
+      window.location = '<?php echo Wo_SeoLink('index.php?link1=search?query=');?>' + $(this).val();
+    }
+  });
+});
+var Searchcontainer = $('.search-container');
+var SearchBox = $('.search-container .search-input');
+var SearchResult = $('.search-dropdown-result');
+
+function Wo_ChangeHomeButtonIcon() {
+
+  $('.navbar-home #home-button').html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+}
+
+function Wo_DetectSearchType(query) {
+  var Hash = smokeTheHash(query);
+  if (Hash) {
+    $('.search-advanced-container').hide(200);
+    Wo_SearchhashResult(query);
+  } else {
+    $('.search-advanced-container').fadeIn(200);
+    Wo_SearchResult(query);
+  }
+}
+
+function Wo_ClearSearches() {
+  $('.clear-searches').html('<i class="fa fa-spinner fa-spin"></i>');
+   $.get(Wo_Ajax_Requests_File(), {f: 'clearChat'}, function(data) {
+        if (data.status == 200) {
+           location.reload();
+        }
+   });
+}
+
+function Wo_GetRecentSearchs() {
+  $.get(Wo_Ajax_Requests_File(), {f: 'search', s: 'recent'}, function(data) {
+      if (data.status == 200) {
+          if (data.html.length > 0) {
+            SearchResult.html('<div class="recent"><div class="gray recent-searches <?php echo Wo_RightToLeft("pull-left");?>"> <?php echo $wo["lang"]["recent_searches"]?></div><div onclick="Wo_ClearSearches();" class="gray recent-searches clear-searches pointer <?php echo Wo_RightToLeft("pull-right");?>" style="color: #F44336;"><svg style="vertical-align: middle;margin-top: -3px;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg><?php echo $wo["lang"]["clear"]?></div><div class="clear"></div></div>' + data.html);
+          }
+        }
+  });
+}
+function Wo_SearchResult(query) {
+    if (SearchBox.val() != '') {
+      Wo_progressIconLoader(Searchcontainer.find('.navbar-form'));
+      Searchcontainer.addClass('open');
+      Searchcontainer.find('.search-advanced-link').attr('href','<?php echo Wo_SeoLink("index.php?link1=search&query=")?>' + query);
+      Searchcontainer.find('.search-advanced-link').attr('data-ajax','<?php echo Wo_SeoLink("?link1=search&query=")?>' + query);
+      $.get(Wo_Ajax_Requests_File(), {f: 'search', s: 'normal', query: query}, function(data) {
+        if (data.status == 200) {
+          if (data.html.length == 0) {
+            SearchResult.html('<span class="center-text">' + " <?php echo $wo['lang']['no_result']; ?>" + '<span>');
+          } else {
+            SearchResult.html(data.html);
+          }
+        }
+        Wo_progressIconLoader(Searchcontainer.find('.navbar-form'));
+      });
+      $(document).click(function() {
+        Searchcontainer.removeClass('open');
+      });
+    } else {
+      Searchcontainer.removeClass('open');
+    }
+}
+
+
+function Wo_SearchhashResult(query) {
+    var Searchcontainer = $('.search-container');
+    var SearchBox = $('.search-container .search-input');
+    var SearchResult = $('.search-dropdown-result');
+    if (SearchBox.val() != '') {
+      Wo_progressIconLoader(Searchcontainer.find('.navbar-form'));
+      Searchcontainer.addClass('open');
+      Searchcontainer.find('.search-advanced-link').attr('href','<?php echo Wo_SeoLink("index.php?link1=search&query=")?>' + query);
+      Searchcontainer.find('.search-advanced-link').attr('data-ajax','<?php echo Wo_SeoLink("?link1=search&query=")?>' + query);
+      $.get(Wo_Ajax_Requests_File(), {f: 'search', s: 'hash', query: query}, function(data) {
+        if (data.status == 200) {
+          if (data.html.length == 0) {
+            SearchResult.html('<span class="center-text">' + " <?php echo $wo['lang']['no_result']; ?>" + '<span>');
+          } else {
+            SearchResult.html(data.html);
+          }
+        }
+        Wo_progressIconLoader(Searchcontainer.find('.navbar-form'));
+      });
+
+      $(document).click(function() {
+        Searchcontainer.removeClass('open');
+      });
+    } else {
+      Searchcontainer.removeClass('open');
+    }
+}
+
+function smokeTheHash(str) {
+  var n = str.search("#");
+  if(n != "-1"){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+$(document).ready(function(){
+  $('.header_center>a').on('click', function(){
+     $('.header_center>a').removeClass('active');
+     $(this).addClass('active')
+  });
+});
+
+
+
+</script>

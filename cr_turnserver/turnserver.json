@@ -1,0 +1,28 @@
+{
+   "iceServers":[
+      {
+         "urls":"turn:154.7.253.19:2053", 
+         "username":"admin", 
+         "credential":"123123123" 
+      },
+      {
+         "urls":"stun:stun.l.google.com:19302"
+      },
+      {
+         "urls":"stun:stun1.l.google.com:19302"
+      },
+      {
+         "urls":"stun:stun2.l.google.com:19302"
+      },
+      {
+         "urls":"stun:stun3.l.google.com:19302"
+      },
+      {
+         "urls":"stun:stun4.l.google.com:19302"
+      }
+   ],
+   "iceTransportPolicy":"all",
+   "bundlePolicy":"balanced",
+   "rtcpMuxPolicy":"require",
+   "iceCandidatePoolSize":0
+}

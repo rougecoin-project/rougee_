@@ -1,0 +1,6 @@
+/****************************/
+/* Copyright 2021 Zygomatic */
+/* http://www.zygomatic.nl  */
+/****************************/
+
+var ZMprops = {"googleAnalytics":"UA-46921137-14","siteName":"HTMLGames.com","uid":"60f5407d88d10","lang":"en","gameUrl":"game","words":{"4004":"Play","4037":"Click to add this game to your favorites.","4038":"Click to remove this game from your favorites.","4047":"I like this game, check it out: #1","4049":"bad,moderate,average,good,outstanding","4075":"Install this game as PWA","4090":"Please disable your Ad Blocker!","4091":"Through Ads we can offer this website and the games on it for free. You need to disable your Ad Blocker for this site to play the games.","4402":"Paste the following code in the web page you want to show this game in","4403":"Direct link","4404":"Images","4405":"If you have implemented <b>ads.txt<\/b> on the domain where you embed our games, you need to add the following line to your ads.txt file in order for our games to work:<br><tt>google.com, pub-5029257013560698, RESELLER, f08c47fec0942fa0<\/tt>"}};

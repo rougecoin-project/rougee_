@@ -1,0 +1,135 @@
+<div class="leftcol-sidebar"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-7 middlecol">
+			<div class="page-margin mt-0">
+				<div class="pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_innr big_size">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27" height="26.997" viewBox="0 0 27 26.997">
+					<defs>
+						<linearGradient id="linear-gradient136" x1="0.5" y1="0.245" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+						<stop offset="0" stop-color="#de45ce"></stop>
+						<stop offset="1" stop-color="#7f2aee"></stop>
+						</linearGradient>
+					</defs>
+					<path id="Union_34" data-name="Union 34" d="M3847.183-2375.537a6.465,6.465,0,0,1,4.777,2.027,6.648,6.648,0,0,1,1.972,4.724v8.1h-13.5v-8.1a6.649,6.649,0,0,1,1.971-4.724A6.471,6.471,0,0,1,3847.183-2375.537Zm-9.06,4.054a8.614,8.614,0,0,0-.377,2.292l-.013.405v8.1h-4.049v-6.071a4.449,4.449,0,0,1,1.2-3.108,4.5,4.5,0,0,1,3.01-1.616Zm18.117,0a5.372,5.372,0,0,1,3.16,1.481,4.847,4.847,0,0,1,1.283,3.243v6.071h-4.052v-8.1A9.093,9.093,0,0,0,3856.24-2371.483Zm-17.833-8.1a3.8,3.8,0,0,1,2.39.946,3.459,3.459,0,0,1,.986,2.433,3.456,3.456,0,0,1-.986,2.429,3.8,3.8,0,0,1-2.39.946,3.8,3.8,0,0,1-2.39-.946,3.463,3.463,0,0,1-.984-2.429,3.465,3.465,0,0,1,.984-2.433A3.8,3.8,0,0,1,3838.407-2379.588Zm17.551,0a3.8,3.8,0,0,1,2.389.946,3.46,3.46,0,0,1,.986,2.433,3.457,3.457,0,0,1-.986,2.429,3.8,3.8,0,0,1-2.389.946,3.8,3.8,0,0,1-2.39-.946,3.452,3.452,0,0,1-.986-2.429,3.455,3.455,0,0,1,.986-2.433A3.8,3.8,0,0,1,3855.958-2379.588Zm-8.775-8.1a5.172,5.172,0,0,1,3.82,1.622,5.1,5.1,0,0,1,1.579,3.777,5.12,5.12,0,0,1-1.579,3.78,5.173,5.173,0,0,1-3.82,1.622,5.174,5.174,0,0,1-3.821-1.622,5.113,5.113,0,0,1-1.579-3.78,5.1,5.1,0,0,1,1.579-3.777A5.173,5.173,0,0,1,3847.183-2387.686Z" transform="translate(-3833.683 2387.686)" fill="url(#linear-gradient136)"></path>
+					</svg><?php echo $wo['lang']['create_new_group']; ?>
+					</div>
+				</div>
+			</div>
+			
+			<div class="page-margin wow_content wow_sett_content">
+				<form class="create-group-form form-horizontal" method="post">
+					<div class="wow_form_fields">
+						<label for="group_title"><?php echo $wo['lang']['group_name']; ?></label>
+						<input id="group_title" name="group_title" type="text">
+					</div>
+					<div class="wow_form_fields">
+						<label for="group_name"><?php echo $wo['lang']['group'];?> URL</label>
+						<div class="input-group">
+							<span class="input-group-addon"><?php echo $wo['config']['site_url'];?>/</span>
+							<input id="group_name" name="group_name" type="text">
+						</div>
+					</div>
+					<div class="wow_form_fields">
+						<label for="group_about"><?php echo $wo['lang']['description']; ?></label>
+						<textarea name="about" id="group_about" rows="3"></textarea>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="wow_form_fields">
+								<label for="privacy"><?php echo $wo['lang']['group_type']; ?></label>
+								<select id="privacy" name="privacy">
+									<option value="1" ><?php echo $wo['lang']['public'];?> </option>
+									<option value="2" ><?php echo $wo['lang']['private'];?> </option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="wow_form_fields">
+								<label for="category"><?php echo $wo['lang']['category']; ?></label>
+								<select name="category" id="category" onchange="GetGroupSubCategory(this)">
+									<?php foreach ($wo['group_categories'] as $category_id => $category_name) {?>
+									<option value="<?php echo $category_id?>"><?php echo $category_name; ?></option>
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+						<?php if (!empty($wo['group_sub_categories'])) { ?>
+						<div class="col-md-6">
+							<div class="wow_form_fields">
+								<label for="group_sub_category"><?php echo $wo['lang']['sub_category']; ?></label>
+								<select name="group_sub_category" id="group_sub_category">
+									<?php
+									if (!empty($wo['group_sub_categories'][array_keys($wo['group_categories'])[0]])) {
+									foreach ($wo['group_sub_categories'][array_keys($wo['group_categories'])[0]] as $id => $sub_category) { ?>
+										<option value="<?php echo $sub_category['id']?>"><?php echo $sub_category['lang']; ?></option>
+									<?php } } ?>
+								</select>
+							</div>
+						</div>
+					    <?php } ?>
+						<div class="clear"></div>
+						<?php $fields = Wo_GetCustomFields('group'); 
+						if (!empty($fields)) {
+							foreach ($fields as $key => $wo['field']) {
+								echo Wo_LoadPage('group/fields');
+							}
+						}
+						?>
+					</div>
+					<div class="app-general-alert setting-update-alert"></div>
+					<div class="text-center">
+						<a class="btn btn-mat" data-ajax="?link1=groups" href="<?php echo Wo_SeoLink('index.php?link1=groups');?>">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg> <?php echo $wo['lang']['go_back'];?>
+						</a>
+						<button class="btn btn-main btn-mat btn-mat-raised add_wow_loader" type="submit"><?php echo $wo['lang']['create']; ?></button>
+					</div>
+					<input type="hidden" name="hash_id" value="<?php echo Wo_CreateSession();?>">
+				</form>
+			</div>
+		</div>
+		<!-- .col-md-8 -->
+		<?php echo Wo_LoadPage('sidebar/content');?>
+	</div>
+	<!-- .row -->
+</div>
+<!-- .page-margin -->
+<script type="text/javascript">
+	<?php 
+$js_array = json_encode($wo['group_sub_categories']);
+echo "var sub_categories_array = ". $js_array . ";\n";
+?>
+	function GetGroupSubCategory(self) {
+		id = $(self).val();
+		var text = "";
+		if (typeof(sub_categories_array[id]) == 'undefined') {
+		    $('#group_sub_category').html('');
+		}
+		else{
+		   	sub_categories_array[id].forEach(function(entry) {
+				text = text + "<option value='"+entry.id+"'>"+entry.lang+"</option>";
+			});
+		    $('#group_sub_category').html(text);
+		}
+	}
+   $(function() {
+     $('form.create-group-form').ajaxForm({
+       url: Wo_Ajax_Requests_File() + '?f=groups&s=create_group',
+       beforeSend: function() {
+         $('.create-group-form').find('.add_wow_loader').addClass('btn-loading');
+       },
+       success: function(data) {
+         scrollToTop();
+         if (data.status == 200) {
+           window.location.href = data.location;
+         } else {
+             var errors = data.errors.join("<br>");
+             $('.app-general-alert').html('<div class="alert alert-danger">' + errors + '</div>');
+             $('.alert-danger').fadeIn(300);
+         }
+         $('.create-group-form').find('.add_wow_loader').removeClass('btn-loading');
+       }
+     });
+   });
+</script>

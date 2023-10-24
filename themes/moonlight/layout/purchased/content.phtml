@@ -1,0 +1,43 @@
+<div class="leftcol-sidebar"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-7 singlecol">
+			<div class="page-margin mt-0">
+					<div class="wo_page_hdng pag_neg_padd pag_alone">
+						<div class="wo_page_hdng_innr big_size">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25.924" height="28.804" viewBox="0 0 25.924 28.804">
+							<defs>
+								<linearGradient id="linear-gradient1016" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+								<stop offset="0" stop-color="#e335f1"></stop>
+								<stop offset="1" stop-color="#fc6519"></stop>
+								</linearGradient>
+							</defs>
+							<path id="Path_5886" data-name="Path 5886" d="M3478.041,4914h15.843a1.475,1.475,0,0,1,1.152.575l3.889,5.185v21.6a1.427,1.427,0,0,1-1.44,1.44H3474.44a1.425,1.425,0,0,1-1.44-1.44v-21.6l3.888-5.185a1.476,1.476,0,0,1,1.152-.575Zm17.282,5.76-2.16-2.88h-14.4l-2.16,2.88Zm-13.682,5.762h-2.881v2.88a7.2,7.2,0,1,0,14.4,0v-2.88h-2.88v2.88a4.321,4.321,0,0,1-8.641,0Z" transform="translate(-3473 -4914)" fill="url(#linear-gradient1016)"></path>
+							</svg><?php echo $wo['lang']['market']; ?>
+						</div>
+					</div>
+				</div>
+			<div class="wow_content my_purchased_content">
+				<?php if (count($wo['purchased']) > 0): ?>
+					<div class="row">
+						<?php echo($wo['html']); ?>
+					</div>
+					<?php if (count($wo['purchased']) == 20){ ?>
+						<div class="purchased_posts_load">
+							<div class="purchased_load-more">
+								<button class="btn btn-default text-center pointer" onclick="Wo_LoadPurchase();"><?php echo $wo['lang']['load_more']; ?></button>
+							</div>
+						</div>
+					<?php } ?>
+				<?php else: ?>
+					<div class="search-filter-center-text empty_state">
+					<?php echo($wo['html']); ?>
+				</div>
+				<?php endif; ?>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- .row -->
+</div>
+<?php echo Wo_LoadPage('sidebar/content');?>

@@ -1,0 +1,600 @@
+
+/* ====================== Messenger dark style =============================== */
+
+.pmessenger,
+.messenger-load-data,
+.pmessenger-mleft12,
+.emojionearea .emojionearea-editor,
+.mob-contacts-header,
+.messenger_stickers_container,
+.messenger_stickers_content,
+.messenger_gifs_content,
+.messenger_gifs_container,
+.mess_search_header,
+.messenger_map_info,
+.messenger-image-url,
+.emojionearea .emojionearea-picker.emojionearea-filters-position-top .emojionearea-filters,
+.pmessenger-msg-list-contenteditable.__uploading:before, 
+.chat_cnt .messenger-shortcut-footer.__uploading:before,
+.messenger-shortcut-container:not(._focus) .messenger-shortcut-header,
+.messenger-shortcut-footer,
+.stickers_header,
+.sticker-pk.active,
+#sc_modern_popup_cnt,
+.messenger_delete_screen,
+.pmessenger-msg-list-contenteditable,
+.typing-indicator,
+.mess_notif_nick_text {
+    background-color: #131313 !important;
+}
+.mess_notif_nick_text {
+    border-color: #131313 !important;
+}
+._hover a.pmessenger-contact-a:hover,
+._hover a.pmessenger-contact-a:hover .pmessenger-mleft12,
+#pmessenger-messages-cnt,
+.emojionearea .emojionearea-picker,
+.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-title,
+.emojionearea .emojionearea-picker .emojionearea-filters .emojionearea-filter.active,
+.messenger-shortcut-messages,
+._hover .mess-shortcut-dropdown-settings ul li a:hover {
+    background-color: #191919 !important;
+}
+
+a.pmessenger-contact-a.active,
+a.pmessenger-contact-a.active .pmessenger-mleft12,
+._hover .stiycker:hover,
+.stickers_header,
+.messenger-gifs-header input,
+.messenger-stickers-header,
+.messenger_screenshot {
+    background-color: #212020 !important;
+}
+
+.messenger-gifs-header input,
+.messenger-stickers-header {
+    border-color: #212020 !important;
+}
+
+.pmessenger,
+.txt_pmessenger-text,
+.messenger_load_data_flex,
+._3szq,
+.xweeWrt,
+.xvgg3a,
+.emojionearea .emojionearea-editor,
+.messenger_call_msg,
+.pmessenger-contact-last-msg-time,
+.messenger-uploading-text,
+.mess_notif_nick_text {
+    color: #a7a7a7 !important;
+}
+
+.txt_pmessenger-text,
+.messenger_call_msg,
+.messenger-shortcut .txt_pmessenger-text,
+.pmessenger .txt_pmessenger-text {
+    background-color: #2a2a30;
+}
+
+.pmessenger-contacts-list,
+.pmessenger-msg-list-header,
+.pmess-right-block,
+.pmessenger-user-details,
+.pmessenger-msg-list-contenteditable,
+.pmessenger-contacts-header,
+.messenger_stickers_container,
+.messenger_gifs_container,
+.messenger-image-url,
+.messenger_map_location,
+.messenger-shortcut-footer,
+.pmessenger-msg-list-contenteditable,
+.messenger_delete_screen,
+.messenger_screenshot {
+    border-color: #000000 !important;
+}
+
+.messenger-shortcut-container .chat_cnt {
+    border-left: 1px solid #000000 !important;
+    border-right: 1px solid #000000 !important;
+}
+
+.messenger-shortcut-header {
+    border: 1px solid #000000 !important;
+    border-bottom: none;
+}
+
+.messenger_call_msg_footer,
+.messenger_call_msg,
+.ic-online {
+    border-color: #21201f !important;
+}
+
+.messenger_older_msg_a,
+#flying-notif-new-messages,
+.emojionearea-search input.search,
+.mess-shortcut-dropdown-settings,
+.user_more_act {
+    background-color: #21201f !important;
+    border-color: #21201f !important;
+}
+
+._hover .messenger_older_msg_a:hover,
+._hover ._4rv4 li:hover,
+._hover .pmessenger-contacts-header-tab:not(.active):hover,
+._hover ._3szo:hover,
+._hover .messenger-search-arr:hover,
+.messenger_map_location,
+._hover ul.user_more_act li a:hover {
+    background-color: #252423 !important;
+}
+
+.user_more_act::before,
+.user_more_act::after {
+    border-bottom-color: #21201f !important;
+}
+
+.mob-contacts-header,
+.pmessenger-contacts-header-tab.active,
+._1lj0,
+.pmessenger-contact-name,
+._hover .pmessenger-contacts-header-tab:not(.active):hover,
+#flying-notif-new-messages,
+.messenger-shortcut-container:not(._focus) .mshortcut-u-name span,
+.messenger-shortcut-container:not(._focus) .mshortcut-u-name span a,
+.pmessenger-message-txt._me .txt_pmessenger-text,
+.messenger_delete_screen span {
+    color: #ffffff !important;
+}
+
+.mess_nickname_inp input {
+    border-width: 1px;
+}
+
+::placeholder,
+::-moz-placeholder,
+.messenger-shortcut-container:not(._focus) .global_user_online,
+.messenger-shortcut-container:not(._focus) .global_user_online span {
+    color: #666 !important;
+}
+
+.emojionearea .emojionearea-editor:empty:before {
+    content: attr(placeholder);
+    color: #666 !important;
+}
+
+
+/* Remove Bubble tick 
+.messenger-shortcut-cnt .pmessenger-message-txt .txt_pmessenger-text:before,
+.messenger-shortcut-cnt .pmessenger-message-txt .txt_pmessenger-text:after {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.messenger-shortcut-cnt .pmessenger-message-txt._me .txt_pmessenger-text:before, .messenger-shortcut-cnt .pmessenger-message-txt._me .txt_pmessenger-text:after {
+    border: none !important;
+    background-color: transparent !important;
+}
+*/
+.messenger-shortcut-cnt ._me .txt_pmessenger-text:after {
+    background: #161616!important;
+}
+/* Icons for dark theme */
+.emojionearea .emojionearea-button {
+    -webkit-filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+}
+
+.emojionearea .emojionearea-picker.emojionearea-picker-position-top .emojionearea-wrapper:after {
+    -webkit-filter: invert(100%) hue-rotate(180deg) contrast(80%) !important;
+    filter: invert(100%) hue-rotate(180deg) contrast(80%) !important;
+}
+
+.messenger-search-arr i {
+    filter: invert(100%) hue-rotate(180deg) contrast(0) !important;
+    opacity: 1;
+}
+
+.messenger-search-arr .mess-header-ic.close i {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* remover outline on focus */
+._3szo {
+    outline: none;
+}
+.messenger_text_col video {
+    outline: none;
+}
+.messenger_text_col audio {
+    outline: none;
+    filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(158%);
+    max-height: 36px;
+}
+.messenger_screenshot {
+    background-size: contain;
+    background-size: 70%;
+}
+.typing-indicator::after,
+.typing-indicator::before {
+	 background-color:#2f2a30 !important;
+}
+.pmessenger-contact-a._newmessages .pmessenger-contact-last-msg{
+	color:#fff;
+}
+
+.typing-indicator{
+	background-color:#2f2a30 !important;
+}
+.pmessenger .emojionearea .emojionearea-editor {
+    background-color: #212121!important;
+}.pmessenger-msg-list-contenteditable{
+    background-color: #191919!important;
+}
+.messenger-live-preview-link-container.urlpreview {
+    background: #333;
+    border: 1px solid #000;
+}.urlpreview .mess_fetch_title{
+	color:#eee;
+}
+._5iwm, ._touch ._5iwm{
+border-color: #363636;
+  
+
+}
+.pmessenger .emojionearea,._touch .pmessenger .emojionearea {
+    border: none!important;
+}
+.pmessenger-message-txt:not(._me) .txt_pmessenger-text:before {
+
+    border-color:#2f2a30!important;
+
+}.pmessenger-message-txt:not(._me) .txt_pmessenger-text:after{
+	    background: #191919!important;
+}
+.messenger_call_msg_time{
+	color:#ccc;
+}
+.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojibtn:hover {
+ 
+    background-color: #000!important;
+ 
+}
+._hover .mess-search-contact-res:hover {
+    background: #363636;
+}
+.messenger-live-preview-link-container {
+    background: #131313;
+    border-color: #000;
+    box-shadow: none;
+}
+.mess_fetch_title{
+color: #fff;
+    font-weight: 400;
+}
+
+.messenger-shortcut-container .emojionearea .emojionearea-editor {
+    background-color: #1f1e1e!important;
+    width: 87%;
+    margin: 0 12px 7px 11px;
+    border-radius: 16px;
+    border: 0px solid #eaeaea;
+}.messenger-shortcut-footer {
+    background-color: #191919!important;
+}
+
+
+#messenger-link-preview svg g{    
+
+stroke: #ccc;
+
+}
+.urlpreview .mess_fetch_sitename {
+    color: #eee;
+}
+.sticker-pk.active {
+    background-color: #fff;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: none;
+}
+._touch .recording_microphone_gif{
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+.messenger_mobile_opts.shownow ul .messenger_mob_option {
+    background: rgb(45 45 45 / 90%)!important;
+    border-color: transparent!important;
+    color: #ccc;
+}
+.mess-shortcut-dropdown-settings .ic-edit-nicknames{
+    filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(158%);
+}
+._6cj2{
+    background: #212121!important;
+    border-color: #000!important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .95)!important;
+
+}._hover ._54ni.__MenuItem:hover > a{
+    background: #212121!important;
+    border-color: #000!important;
+    color: #fff!important;
+}._558b ._54ng{
+	    background-color: #272328!important;
+
+}
+._558b ._54nc {
+    border-color: transparent;
+    color: #fff;
+}
+/*
+.mess_attachment_small { -webkit-filter: sepia(20%) saturate(70%) grayscale(1) contrast(100%) invert(100%); filter: sepia(20%) saturate(70%) grayscale(1) contrast(100%) invert(100%); }
+*/
+
+.vy_ms__main_btns_a svg, .vy_ms__main_btns_a svg path,
+.xvgg2a, ._3szo svg path {
+    fill: #c6c6c6 !important;
+    color: #c6c6c6 !important;
+}
+.vy_mess-pcontact {
+    border-color: rgb(217 217 217 / 35%) !important;
+}
+.vy_ms__gloalpopup_f55flex, .vy_mess-pcontact {
+    background: #464646 !important;
+}
+.vy_mess-pcontact,.vy_ms__globalpopup_header,
+.vy_ms__gloalpopup_f54,
+header.colors-popup-h {
+    border-color: #131313 !important;
+}
+.vy_mess-pcontact_search input:focus {
+    outline: none !important;
+}
+._hover .vy_mess-pcontact:hover {
+    border-color: #1c1b1b !important
+}
+.vy_ms__globalpopup_content, .vy_ms__globalpopup_content_invitenew, .vy_ms__globalpopup_header {
+    background: rgb(0 0 0 / 45%) !important;
+}.mess-shortcut-dropdown-settings{
+box-shadow: 0px 2px 0px rgb(0 0 0 / 1%);
+}._hover .vy_ms__shortcutsettings_dropdown:hover, .vy_ms__shortcutsettings_dropdown.__ac {
+    border-color: transparent;
+    background: #21201f;
+}.vy_ms__dropdown_shortcut_ic svg, .vy_ms__shortcutdropupsvg svg{
+fill: #8a8d92;
+}
+.sc_moder_popup_ovr{
+background: rgb(0, 0, 0,.5);
+}._hover .messenger-shortcut-header li:hover, ._hover .messenger-shortcut-header a:hover {
+    background: #21201f;
+ 
+}.vy_ms__stickers-header-slider{
+background: #0c0c0c;
+}.stickers__slider-arrow._right {
+ 
+    box-shadow: -5px 0 5px 0px #0e0e0e;
+}.stickers__slider-arrow._left {
+ 
+    box-shadow: 5px 0 5px 0px #0e0e0e;
+}.stickers__slider-arrow {
+ 
+    background: #131313 no-repeat;
+	
+}.stickers__slider-arrow:hover {
+    background-color: #1b1b1b;
+}._hover .sticker-pk:hover {
+    box-shadow: 0px 0px 0px 1px #000000;
+}.mess_attachment_small {
+ 
+    background-color: #191919;
+}._6zkf {
+    color: #9a9a9a;
+ 
+}
+._1ht7 {
+    color: #9a9a9a;
+}._1ht7 {
+    color: #9a9a9a;
+}.vy_ms__globalpopup:before{
+background-color: rgb(0, 0, 0,.35);
+}.vy_mess-pcontact_search input{
+color: #c7c7c7;
+}._hover .vy_ms__globalpopup_close:hover {
+    background: #5d5d5d;
+}._hover .vy_ms__group_admin_clickable:not(._notadmin):hover, .vy_ms__group_admin_clickable:not(._notadmin).group_admin_dropdown_active {
+ 
+    background: #2d2d2d;
+}.vy_ms__group_admin_settings_cnt {
+    background: #2d2d2d;
+}._hover .vy_ms__group_admin_settings_button:hover {
+    background: #212121;
+}._hover .vy_ms__group_admin_settings_button:hover svg {
+    fill: #cccccc;
+}._5iwm, ._touch ._5iwm {
+    border-color: transparent;
+}.vy_ms__globalpopup_filters {
+ 
+    background: transparent;
+}.vy_ms__groupchat_member {
+ border: 1px solid #353535;
+    background: linear-gradient(#555, #222);
+ 
+}._hover .vy_ms__groupchat_member:hover {
+    background: linear-gradient(#222, #555);
+}.vy_ms__globalpopup_group_tabs a.vy_ms__group_members_active_tab {
+ 
+    background: transparent;
+ 
+}.vy_ms__globalpopup_group_tabs a {
+ 
+    background: #6d6d6d;
+}._hover .vy_ms__globalpopup_close:hover svg {
+    fill: #b3b2b2;
+}._hover .vy_ms__groupchat_member__rightside:hover {
+    background: #2d2d2d;
+}.mshortcut-top-count {
+ 
+    color: #ccc;
+}.vy_ms__dropdown_separator {
+ 
+    background: #484848;
+ 
+}
+.vy_ms__mobmm_btns,.messenger_layer_ovr{
+	background-color:rgba(0,0,0,.2);
+}
+ .messenger_mob_option__delim {
+
+    background: #000;
+
+}
+ .messenger_mob_svg svg {
+	 fill:#ccc;
+ }.messenger_mobile_opts ul{
+	background:rgb(44 45 47);
+ }
+ .messenger-gifs-header{
+	 background:#333333;
+ }.pmessenger-contacts-header-tab, .mob-contacts-header{
+	 color:#ccc!important;
+	 
+ }.vy_mess-pcontact {
+    border-color: #585757 !important;
+} .ms-shortcut-notifsvg svg path {
+    stroke:#fff;
+}
+  .messenger-load-data{
+	 background-color: rgb(0 0 0 / 1%);
+ }.pmessenger-contacts-list {
+    background: #131313;
+}._5iwm ._58al {
+    background-color: #212121;
+}
+.vy_ms_f45vwq1 {
+    background: #2b2b2b;
+    color: #ccc;
+}.message-reactions-std {
+    background: #191919;
+}.vy_ms__main_btns_a {
+    background-color: rgb(0 0 0 / 74%);
+}a.people-reacted-top-header {
+    color: #ddd;
+}.people-reacted-user-str-fullname a,.people-reacted-user-str-username {
+    color: #ddd;
+} .message_reactions {
+    color: #ddd;
+}._hover [uid="reaction"]:hover,._hover .vy_ms__forward_btn:hover, ._hover .vy_ms__reply_btn:hover {
+    background-color: #000;
+ 
+} .vy_mess-pcontact_search._5iwm {
+    background: #262626;
+}.vy_mess-pcontact_search input {
+    background: #1b1b1b;
+}.vy_mess-pcontact_search input:focus{
+	background: #000;
+}.vy_ms__globalpopup_close {
+    background: #0c0c0c;
+}.vy_ms__globalpopup_header,.vy_ms__forward_delim_c,.vy_ms__forward_u_name {
+    color: #ddd;
+}.vy_ms__forward_button button {
+    border: 1px solid #060606;
+    background-color: #505050;
+    box-shadow: 0 0 20px #383838;
+    color: #ffffff;
+}
+
+header.colors-popup-h,.mess_nickname_td {
+    color: #ddd;
+} .mess_nickname_td a {
+    color: #fff;
+}.mess_nickname_inp input {
+    background: #3a3a3a;
+    border-color: #000;
+}.mess_search_header_input input {
+    border: 1px solid #000;
+    background-color: #3a3a3a;
+}.vy_ms__group_admin_settings_button {
+    color: #ddd;
+}._hover .vy_ms__group_admin_settings_button:hover {
+    color: #eee;
+
+}.groupchat_online_memebers, .groupchat_total_members,.vy__js__typing_group_usernames,.vy_ms__muteContact_header,.vy_ms__notifli span {
+    color: #ddd;
+}.vy_ms__r .sc-menu {
+    background: #212121;
+    border-color: #131313;
+}.vy_ms__r .sc-menu_arw {
+    border: 1px solid #151515;
+    background: #212121;
+}input#stickers-search-val {
+    border-color: #131313;
+    background: #212121;
+	color:#ddd;
+}.vy_mess-pcontact_info {
+    background: #262626;
+}.vy_mess-pcontact_info span {
+    color: #ddd;
+}.vy_mess-pcontact_info svg {
+
+    fill: #e0e0e0;
+
+}.vy_mess-pcontact_name {
+    color: #ddd;
+}input.vy_ms__groupchat_create___form-control {
+    border: 1px solid #000000;
+    background: #333;
+    color: #ddd;
+}.vy_ms__groupchat_participatns_container_dropdown {
+    background: #444;
+    box-shadow: 0px 1px 8px rgb(0 0 0 / 79%);
+}.vy_ms_participants_groupchat {
+    border-color: #333;
+}
+.vy_ms_particip_groupchat_uname {
+    color: #ddd;
+}._hover .vy_ms_participants_groupchat:hover {
+    background-color: #313131;
+}.vy_ms__top_avatar{
+	border-color: #131313;
+}.mm_button_back .messenger-search-arr:hover, .mm_button_back .messenger-search-arr:active {
+    background: #121212;
+    border-radius: 0;
+}._touch a.pmessenger-contact-a.active .pmessenger-mleft12,
+._touch a.pmessenger-contact-a:active .pmessenger-mleft12 {
+    background-color: #111;
+}._touch .pmessenger.show_contacts .pmessenger-contacts-list {
+	background-color:#131313;
+}
+._touch ._5iwm ._58al{
+    background-color: #212121;
+	    color: #ddd;
+}#vy_ms_mob_message_options_menu{
+	background: #3a3939;
+    border-color: #000;
+}
+
+.lg-backdrop {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgb(0 0 0 / 20%)!important;
+}.lg-toolbar {
+    background-color: rgb(0 0 0 / 75%);
+}.lg-actions .lg-next, .lg-actions .lg-prev {
+    background-color: rgba(0, 0, 0, 0.45);
+}.lg-actions .lg-next:hover, .lg-actions .lg-prev:hover {
+    color: #ccc;
+}.lg-toolbar .lg-icon:hover {
+    color: #ccc;
+}.messenger-media-image {
+    border-color: #000;
+}.__vyms_replying {
+    background-color: rgb(0 0 0 / 20.5%); 
+}
+.__vyms_replying:before {
+	
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40px' height='40px' viewBox='1 1 21 21'%3E%3Cg stroke-width='1' fill-rule='evenodd' fill='%23555' class='m50y4xls'%3E%3Cpath d='M10.8932368,14.7625445 C10.8932368,15.535432 10.0849567,15.996442 9.48116675,15.5677995 L4.03193175,11.696707 C3.49257425,11.313742 3.49287675,10.4694645 4.03193175,10.0864995 L9.48116675,6.2157095 C10.0849567,5.7867645 10.8932368,6.248077 10.8932368,7.020662 L10.8938418,9.0755445 C15.2129368,9.0755445 18.1517243,11.027577 18.1523293,15.7226795 C18.1523293,16.0820495 17.9036743,16.3349395 17.5273643,16.3349395 C17.2487618,16.3349395 17.0164418,16.1746145 16.8527893,15.680027 C16.1588543,13.584307 14.1063918,12.7049395 10.8938418,12.7049395 L10.8932368,14.7625445 Z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E")
+}
+.messenger_load_data_brand svg path{
+	fill:#ddd;
+}

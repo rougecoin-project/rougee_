@@ -1,0 +1,92 @@
+<div class="wow_content settings-head">
+	<div class="infoz">
+	  	<svg class="feather" version="1.0" xmlns="http://www.w3.org/2000/svg" style="background-color: #607d8b30;" width="24" height="24" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"> <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#607d8b" stroke="currentColor"> <path d="M4668 5027 c-9 -7 -73 -107 -142 -223 -136 -226 -148 -262 -106 -304 17 -17 33 -20 120 -20 l100 0 0 -560 0 -560 -180 0 -180 0 0 233 c0 203 -3 237 -19 272 -23 51 -89 111 -138 125 l-39 12 28 55 c70 138 9 310 -130 369 -48 20 -156 20 -204 0 -139 -59 -200 -231 -130 -369 l28 -55  -115 -74 -138 -125 -16 -35 -19 -69 -19 -272 l0 -233 -160 0 c-147 0 -162 -2 -180 -20 -20 -20 -20 -33 -20 -640 l0 -620 -180 0 -180 0 0 233 c0 203 -3 237 -19 272 -23 51 -89 111 -138 125 l-39 12 28 55 c70 138 9 310 -130 369 -48 20 -156 20 -204 0 -139 -59 -200 -231 -130 -369 l28 -55 -39 -12 c-49 -14 -115 -74 -138 -125 -16 -35 -19 -69 -19 -272 l0 -233 -160 0 c-147 0 -162 -2 -180 -20 -20 -20 -20 -33 -20 -640 l0 -620 -180 0 -180 0 0 233 c0 203 -3 237 -19 272 -23 51 -89 111 -138 125 l-39 12 28 55 c70 138 9 310 -130 369 -48 20 -156 20 -204 0 -139 -59 -200 -231 -130 -369 l28 -55 -39 -12 c-49 -14 -115 -74 -138 -125 -16 -35 -19 -69 -19 -272 l0 -233 -160 0 c-147 0 -162 -2 -180 -20 -19 -19 -20 -33 -20 -340 0 -307 1 -321 20 -340 20 -20 33 -20 2320 -20 l2300 0 0 80 0 80 -2240 0 -2240 0 0 200 0 200 740 0 c727 0 740 0 760  20 20 33 20 640 l0 620 740 0 c727 0 740 0 760 20 20 20 20 33 20 640 l0 620 740 0 c727 0 740 0 760 20 20 20 20 33 20 640 l0 620 100 0 c87 0 103 3 120 20 42 42 30 78 -106 304 -69 116 -133 216 -142 223 -9 7 -33 12 -52 12 -19 0 -43 -5 -52 -12z m-723 -782 c19 -18 25 -35 25 -65 0 -56 -34 -90 -90 -90 -56 0 -90 34 -90 90 0 30 6 47 25 65 34 35 96 35 130 0z m115 -416 c53 -19 60 -51 60 -274 l0 -195 -240 0 -240 0 0 194 c0 218 7 251 54 272 39 17 318 19 366 3z m-1635 -864 c19 -18 25 -35 25 -65 0 -56 -34 -90 -90 -90 -56 0 -90 34 -90 90 0 56 34 90 90 90 30 0 47 -6 65 -25z m115 -416 c53 -19 60 -51 60 -274 l0 -195 -240 0 -240 0 0 194 c0 218 7 251 54 272 39 17 318 19 366 3z m-1635 -864 c19 -18 25 -35 25 -65 0 -56 -34 -90 -90 -90 -56 0 -90 34 -90 90 0 56 34 90 90 90 30 0 47 -6 65 -25z m115 -416 c53 -19 60 -51 60 -274 l0 -195 -240 0 -240 0 0 194 c0 218 7 251 54 272 39 17 318 19 366 3z"></path><path d="M4880 160 l0 -80 80 0 80 0 0 80 0 80 -80 0 -80 0 0 -80z"></path></g></svg>
+		<p style="color: 607d8b;"><?php echo $wo['lang']['tiers']; ?></p>
+	</div>
+</div>
+<div class="wo_settings_page wow_content">
+	<a href="javascript:void(0)" class="btn btn-main btn-mat btn-mat-raised" onclick="AddTier()"><?php echo $wo['lang']['add_tier']; ?></a>
+	<div class="tier_page">
+		<div>
+			<p><?php echo $wo['lang']['choose_offer_patrons']; ?></p>
+			<?php echo $wo['tiers_html']; ?>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function EditTier(id) {
+		$('.modal_edit_tier_modal_alert_'+id).empty();
+		$("#edit_tier_modal_"+id).find('.btn-mat').removeAttr('disabled')
+		$("#edit_tier_modal_"+id).find('.btn-mat').text("<?php echo $wo['lang']['edit']; ?>");
+		$('#edit_tier_modal_'+id).modal('show');
+		$("#select_tier_image_"+id).click(function(event) {
+      $("#tier_image_"+id).click()
+    });
+    $("#tier_image_"+id).change(function(event) {
+      $("#select_tier_image_"+id).html("<img src='" + window.URL.createObjectURL(this.files[0]) + "' alt='Picture'>")
+    });
+	}
+	function DeleteTier(id,type = 'show') {
+		if (type == 'hide') {
+	      $('#delete-tier').find('.btn-mat').attr('onclick', "DeleteTier('"+id+"')");
+	      $('#delete-tier').modal('show');
+	      return false;
+	    }
+	    $('.tier_'+id).slideUp();
+		$('.tier_'+id).remove();
+		$('#edit_tier_modal_'+id).remove();
+		$.post(Wo_Ajax_Requests_File() + '?f=tier&s=delete&hash=' + $('.main_session').val(), {id: id}, function(data, textStatus, xhr) {});
+	}
+	function AddTier(){
+		$('.modal_add_tier_modal_alert').empty();
+	  $("#add_tier_modal").find('.btn-mat').removeAttr('disabled')
+	  $("#add_tier_modal").find('.btn-mat').text("<?php echo $wo['lang']['add'] ?>");
+	  $('#add_tier_modal').modal('show');
+	  $("#select_tier_image").click(function(event) {
+      $("#tier_image").click()
+    });
+    $("#tier_image").change(function(event) {
+      $("#select_tier_image").html("<img src='" + window.URL.createObjectURL(this.files[0]) + "' alt='Picture'>")
+    });
+	}
+	function ShowBenefitsChat(self){
+		if ($(self).prop("checked")) {
+			$('.add_benefits_chat').slideDown();
+		}
+		else{
+			$('.add_benefits_chat').slideUp();
+		}
+	}
+	$(document).ready(function() { 
+    var options = { 
+      url: Wo_Ajax_Requests_File() + '?f=tier&s=add&hash=' + $('.main_session').val(),
+        beforeSubmit:  function () {
+          $('.modal_add_tier_modal_alert').empty();
+          $("#add_tier_modal").find('.btn-mat').attr('disabled', 'true');
+          $("#add_tier_modal").find('.btn-mat').text("<?php echo($wo['lang']['please_wait']) ?>");
+        }, 
+        success: function (data) {
+          $("#add_tier_modal").find('.btn-mat').text("<?php echo $wo['lang']['add'] ?>");
+          $("#add_tier_modal").find('.btn-mat').removeAttr('disabled')
+          if (data.status == 200) {
+            $('.modal_add_tier_modal_alert').html('<div class="alert alert-success bg-success"><i class="fa fa-check"></i> '+
+              data.message
+              +'</div>');
+              setTimeout(function () {
+                $('.modal_add_tier_modal_alert').empty();
+	              $("#add_tier_modal").find('.btn-mat').removeAttr('disabled')
+	              $("#add_tier_modal").find('.btn-mat').text("<?php echo $wo['lang']['add'] ?>");
+	              $('#add_tier_modal').modal('hide');
+	              location.reload();
+              },2000);
+          } else {
+            $('.modal_add_tier_modal_alert').html('<div class="alert alert-danger bg-danger"> '+
+            data.message
+            +'</div>');
+          } 
+        }
+    }; 
+    $('.tier_form').ajaxForm(options); 
+  });
+</script>

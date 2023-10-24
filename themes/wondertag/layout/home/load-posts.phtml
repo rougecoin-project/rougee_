@@ -1,0 +1,49 @@
+<?php $stories = Wo_GetPosts(array('limit' => 12, 'publisher_id' => 0,'placement' => 'multi_image_post','anonymous' => true,  'excluded_posts' => $excludedPosts)); 
+    $excludedPosts = isset($_GET['excluded_posts']) ? explode(",", $_GET['excluded_posts']) : [];
+	?>
+<script>
+$("<?php if (count($stories) <= 0) { ?>.home_no_post_people<?php } else { ?>.home_post_people .post-container:nth-child(2)<?php } ?>").append('<?php $users = Wo_UserSug(8);if (count($users) != 0) { ?><div class="wow_content tag_sidebar_widget tag_post_people_know"><div class="valign tag_sidebar_widget_title"><b><?php echo $wo['lang']['people_you_may_know'] ?></b><a onclick="Wo_ReloadSideBarUsers();" class="refresh"><?php echo $wo['lang']['home_refresh'] ?></a></div><div class="tag_scroll sidebar-users-may-know-container"><?php foreach ($users as $wo['UsersList']) { $wo['UsersList']['user_name'] = mb_substr($wo['UsersList']['name'],0,10, "utf-8");echo Wo_LoadPage('sidebar/sidebar-user-list'); } ?></div><div class="clear"></div></div><?php } ?>');
+</script>
+<script>
+$("<?php if (count($stories) <= 0) { ?>.home_no_post_people<?php } else { ?>.home_post_people .post-container:nth-child(2)<?php } ?>").append('<?php $users = Wo_UserSug(8);if (count($users) != 0) { ?><div class="wow_content tag_sidebar_widget tag_post_people_know"><div class="valign tag_sidebar_widget_title"><b>More <?php echo $wo['lang']['people_you_may_know'] ?></b><a onclick="Wo_ReloadSideBarUsers();" class="refresh"><?php echo $wo['lang']['home_refresh'] ?></a></div><div class="tag_scroll sidebar-users-may-know-container"><?php foreach ($users as $wo['UsersList']) { $wo['UsersList']['user_name'] = mb_substr($wo['UsersList']['name'],0,10, "utf-8");echo Wo_LoadPage('sidebar/sidebar-user-list'); } ?></div><div class="clear"></div></div><?php } ?>');
+</script>
+<script>
+$("<?php if (count($stories) <= 0) { ?>.home_no_post_people<?php } else { ?> .post-container:nth-child(3)<?php } ?>").append('<?php $groups = Wo_GroupSug(8);if (count($groups) != 0) { ?><div class="wow_content wow_my_groups" style="border: gray 1px solid;"><div class="valign tag_sidebar_widget_title"><b>Suggested Pods: Click Refresh</b><a onclick="Wo_ReloadSideBarGroups();" class="refresh"><?php echo $wo['lang']['home_refresh'] ?></a></div><img src="https://media0.giphy.com/media/Y4qAD0aCjaDrip7Mar/giphy.gif" alt="GIF" style="max-width: 100%;margin-bottom: -122px;"><div class="tag_scroll sidebar-group-may-know-container" style="padding: 11px 12px 1px;"><?php foreach ($groups as $wo['GroupsList']) { $wo['GroupsList']['group_name'] = mb_substr($wo['GroupsList']['name'],0,10, "utf-8");echo Wo_LoadPage('sidebar/sidebar-groups-list'); } ?></div><div class="clear"></div></div><?php } ?>');
+</script>
+<script>
+$("<?php if (count($stories) <= 0) { ?>.home_no_post_people<?php } else { ?> .post-container:nth-child(9)<?php } ?>").append('<?php $pages = Wo_PageSug(8);if (count($pages) != 0) { ?><div class="wow_content wo_sidebar_pages" style="border: gray 1px solid;"><div class="valign tag_sidebar_widget_title"><b>Suggested Things</b><a onclick="Wo_ReloadSideBarPages();" class="refresh"><?php echo $wo['lang']['home_refresh'] ?></a></div><img src="https://rougee.io/upload/photos/2023/04/28_cover3C20B53D-2907-4D01-9DD8-1CBAA88BBBD0.gif" style="max-width: 100%;margin-bottom: -122px;}"><div class="tag_scroll sidebar-pages-may-know-container" style="padding: 11px 12px 1px;"><?php foreach ($groups as $wo['GroupsList']) { $wo['GroupsList']['group_name'] = mb_substr($wo['PagesList']['name'],0,10, "utf-8");echo Wo_LoadPage('sidebar/sidebar-page-list'); } ?></div><div class="clear"></div></div><?php } ?>');
+</script>
+<div id="posts">
+	<?php
+		if ($wo['config']['pro'] == 1) {
+		$promoted = $wo['story'] = Wo_GetPromotedPost();
+		if (count($promoted) > 0) {
+		$wo['story']['post_is_promoted'] = 1;
+	?>
+		<div class="promoted-post">
+			<?php echo Wo_LoadPage('story/content'); ?>
+		</div>
+	<?php } } ?>
+	<?php
+		if (count($stories) <= 0) {
+			echo Wo_LoadPage('story/content');
+			echo '<div class="home_no_post_people"></div>';
+		} else {
+			echo '<div class="home_post_people">';
+			foreach ($stories as $wo['story']) {
+				echo Wo_LoadPage('story/content');
+			}
+			echo '</div>';
+		}
+	?>
+
+
+</div>
+<?php if (count($stories) < 1) { ?>
+	<div class="load-more pointer" id="load-more-posts" onclick="Wo_GetMorePosts();">
+		<span class="btn btn-default text-center pointer"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"></path></svg></span> <?php echo $wo['lang']['load_more_posts'];?></span>
+	</div>
+<?php } ?>
+<div id="load-more-filter">
+	<span class="filter-by-more hidden" data-filter-by="all"></span>
+</div>

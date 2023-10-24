@@ -1,0 +1,2 @@
+<button type="button" class="btn btn-default btn-mat" 
+data-uch='{"id":"<?php echo $wo['message']['user_id'];?>","fullname":"<?php if(empty($wo['message']['first_name'])) echo $wo['message']['username']; else echo $wo['message']['first_name'].' '.$wo['message']['last_name'];?>","photo":"<?php echo $wo['message']['avatar'];?>"}' class="btn btn-default btn-sm" onclick="vy_openChatTab(this,event,<?php echo $wo['message']['user_id'];?>);"><span class="button-text"><?php echo $wo['lang']['message'];?></span></button>

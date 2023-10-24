@@ -1,0 +1,45 @@
+<div class="leftcol-sidebar"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-7 profile-lists singlecol">
+		<div class="page-margin mt-0">
+					<div class="wo_page_hdng pag_neg_padd pag_alone">
+						<div class="wo_page_hdng_innr big_size">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="27.088" viewBox="0 0 28 27.088">
+							<defs>
+								<linearGradient id="linear-gradient1132" x1="0.874" y1="0.355" x2="0" y2="0.366" gradientUnits="objectBoundingBox">
+								<stop offset="0" stop-color="#fccf31"></stop>
+								<stop offset="1" stop-color="#f55555"></stop>
+								</linearGradient>
+							</defs>
+							<path id="Path_5058" data-name="Path 5058" d="M3584,2484h27.287a.643.643,0,0,1,.356.1.635.635,0,0,1,.257.256.613.613,0,0,1,.1.357.643.643,0,0,1-.1.356l-5.09,8.91,5.09,8.91a.643.643,0,0,1,.1.356.611.611,0,0,1-.1.356.634.634,0,0,1-.257.257.643.643,0,0,1-.356.1h-24.436v7.128H3584Z" transform="translate(-3584 -2484)" fill="url(#linear-gradient1132)"></path>
+							</svg><?php echo $wo['lang']['pages']; ?>
+						</div>
+						<?php if ($wo['config']['can_use_pages']) { ?>
+							<a class="btn btn-main btn-mat btn-mat-raised create-btn-bottom" href="<?php echo Wo_SeoLink('index.php?link1=create-page');?>" data-ajax="?link1=create-page"><svg height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g id="_03_Login" data-name="03 Login"><path d="m256 512a25 25 0 0 1 -25-25v-462a25 25 0 0 1 50 0v462a25 25 0 0 1 -25 25z"/><path d="m487 281h-462a25 25 0 0 1 0-50h462a25 25 0 0 1 0 50z"/></g></svg></a>
+						<?php } ?>
+					</div>
+				</div>
+			<div class="page-margin wow_content">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_my_pages">
+				<div>
+					<?php
+						$pages = Wo_GetLikes($wo['user']['id'],'',50);
+						if (count($pages) > 0) {
+							foreach ($pages as $wo['page']) {
+								$wo['page']['Wo_PageSug'] = true;
+								echo Wo_LoadPage('page/pages-list');
+							}
+						} else {
+							echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z"></path></svg>' . $wo['lang']['no_pages_found'] . '</div>';
+						}
+					?>
+				</div>
+			</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php echo Wo_LoadPage('sidebar/content');?>

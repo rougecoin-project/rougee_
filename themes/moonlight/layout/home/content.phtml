@@ -1,0 +1,392 @@
+<div class="leftcol-sidebar"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+<style>
+	.container{
+		width: 800px;
+	}
+	@media (max-width: 1870px){
+		.container{
+			width: 800px!important;
+		}
+	}
+	@media (max-width: 1500px){
+		.container{
+			width: 100%!important;
+		}
+	}
+</style>
+<div class="page-margin">
+	<div class="row">
+		<div class="middlecol">
+			<?php if ($wo['config']['user_status'] == 1) { ?>
+				<div class="user-status-home wow_home_stories">
+					<ul class="status-list">
+						<?php if ($wo['config']['can_use_story']) { ?>
+						<li class="create_new" style="padding-left: 0;">
+							<a href="<?php echo Wo_SeoLink('index.php?link1=create-status'); ?>" data-ajax="?link1=create-status">
+								<img src="<?php echo $wo['user']['avatar'];?>" alt="<?php echo $wo['user']['name'];?>">
+							</a>
+							<div class="story-owner story-realOwner">
+								<svg xmlns="http://www.w3.org/2000/svg" style="cursor: pointer;" onclick="window.location.replace('<?php echo Wo_SeoLink('index.php?link1=create-status'); ?>')" title="<?php echo $wo['lang']['create_story'] ?>" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+								<p style="font-weight: 600;color: #121214;"><?php echo $wo['lang']['createstory'];?></p>
+							</div>
+						</li>
+					  <?php } ?>
+						<?php
+							if ($wo['config']['user_status'] == 1) {
+								$get_user_status = Wo_GetFriendsStatus(array('limit' => 5));
+								if (!empty($get_user_status)) {
+						?>
+						<?php
+							foreach ($get_user_status as $key => $wo['user_status']) {
+								echo Wo_LoadPage('home/user-status');
+							}
+							}
+						?>
+						<?php } ?>
+						<?php if (!empty($get_user_status) && count($get_user_status) > 4) { ?>
+							<a href="<?php echo Wo_SeoLink('index.php?link1=more-status'); ?>" class="status-loadMore">
+							<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 240.823 240.823" style="enable-background:new 0 0 240.823 240.823;" xml:space="preserve">
+<g>
+	<path id="Chevron_Right_1_" d="M183.189,111.816L74.892,3.555c-4.752-4.74-12.451-4.74-17.215,0c-4.752,4.74-4.752,12.439,0,17.179
+		l99.707,99.671l-99.695,99.671c-4.752,4.74-4.752,12.439,0,17.191c4.752,4.74,12.463,4.74,17.215,0l108.297-108.261
+		C187.881,124.315,187.881,116.495,183.189,111.816z"/>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
+								</a>
+						<?php } ?>
+					</ul>
+				</div>
+			<?php
+				}
+				if (Wo_IsThereAnnouncement() === true) {
+				$announcement = Wo_GetHomeAnnouncements();
+			?>
+			<div class="home-announcement">
+				<div class="alert alert-success" style="background-color: white;">
+					<span class="close announcements-option" data-toggle="tooltip" onclick="Wo_ViewAnnouncement(<?php echo $announcement['id']; ?>);" title="<?php echo $wo['lang']['hide'];?>">
+						<i class="fa fa-remove"></i>
+					</span>
+					<?php echo $announcement['text']; ?>
+				</div>
+			</div>
+			<!-- .home-announcement -->
+			<?php
+				}
+				if($wo['loggedin'] == true) {
+						echo Wo_LoadPage('story/publisher-box');
+				}
+			?>
+
+			<?php if (Wo_IsMobile() == true) { ?>
+			<?php if ($wo['config']['order_posts_by'] == 0) { ?>
+				<div class="wow_content order-by">
+					<div class="dropdown">
+						<?php echo $wo['lang']['store_posts_by'] ?>: <a class="btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+						<span class="order-text"><?php echo ($wo['user']['order_posts_by'] == 0) ? $wo['lang']['all'] : $wo['lang']['people_i_follow']; ?></span>
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu post_order_feed">
+							<li>
+								<a href="javascript:void(0);" onclick="Wo_StorePosts(0);">
+									<div>
+										<b><?php echo $wo['lang']['all'] ?></b>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:void(0);" onclick="Wo_StorePosts(1);">
+									<div>
+										<b><?php echo $wo['lang']['people_i_follow'] ?></b>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			<?php } ?>
+			<?php } ?>
+
+			<?php if ($wo['config']['afternoon_system'] == 1) { ?>
+			<div class="alert alert-dismissible greetalert hidden" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="setCookie('day_status', '1', 3);"><span aria-hidden="true">&times;</span></button>
+				<div id="daynightmsg"></div>
+			</div>
+			<?php } ?>
+
+			<?php if ($wo['page'] == 'home' && in_array($wo['config']['website_mode'], array('facebook','linkedin'))) { ?>
+				<div id="scroll_filter_click"></div>
+				<ul class="list-group filterby" id="filterby-post">
+					<li class="list-group-item hidden" contenteditable="false">Filter by</li>
+					<li class="list-group-item avtive filter-by-li filter_negative_clr" onclick="Wo_FilterPostBy('all');" style="color: #F50E16;" dir="auto">
+						<svg xmlns="http://www.w3.org/2000/svg" width="27.723" height="22.889" viewBox="0 0 26.723 21.889">
+							<path id="Subtraction_19" data-name="Subtraction 19" d="M19.7,20.889H4.378A1.142,1.142,0,0,1,3.6,20.58a1.077,1.077,0,0,1-.318-.754V10.26H0L11.307.276a1.113,1.113,0,0,1,1.466,0L24.08,10.26H20.8v9.567a1.085,1.085,0,0,1-.318.754A1.144,1.144,0,0,1,19.7,20.889ZM7.661,14.512v2.125h8.757V14.512ZM7.649,11.5v2.142h8.776V11.5Z" transform="translate(1.322 0.5)" fill="#f50e16" stroke="rgba(0,0,0,0)" stroke-width="1" fill="currentColor"/>
+						</svg>
+					</li>
+					<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('text');" dir="auto" style="color: #FFAB1E;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="21.549" height="21.549" viewBox="0 0 21.549 21.549">
+							<path id="Path_9948" data-name="Path 9948" d="M3434.317,3997.549h-15.084a3.236,3.236,0,0,1-3.232-3.232v-17.239a1.067,1.067,0,0,1,1.077-1.078h15.085a1.068,1.068,0,0,1,1.077,1.078v12.93h4.31v4.31a3.236,3.236,0,0,1-3.232,3.232Zm-1.077-5.387v2.155a1.077,1.077,0,1,0,2.155,0v-2.155Zm-12.93-10.774v2.155h8.62v-2.155Zm0,4.31v2.155h8.62V3985.7Zm0,4.311v2.154h5.387v-2.154Z" transform="translate(-3416 -3976)" fill="#ffab1e" fill="currentColor"/>
+						</svg>
+					</li>
+					<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('photos');" dir="auto" style="color: #00C500;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="27.175" height="21.136" viewBox="0 0 27.175 21.136">
+							<path id="Icon_awesome-images" data-name="Icon awesome-images" d="M22.645,20.366v.755a2.265,2.265,0,0,1-2.265,2.265H2.265A2.265,2.265,0,0,1,0,21.121V9.044A2.265,2.265,0,0,1,2.265,6.779h.755v9.813a3.779,3.779,0,0,0,3.774,3.774Zm4.529-3.774V4.515A2.265,2.265,0,0,0,24.91,2.25H6.794A2.265,2.265,0,0,0,4.529,4.515V16.592a2.265,2.265,0,0,0,2.265,2.265H24.91A2.265,2.265,0,0,0,27.175,16.592Zm-15.1-9.813A2.265,2.265,0,1,1,9.813,4.515,2.265,2.265,0,0,1,12.078,6.779ZM7.548,13.573l2.619-2.619a.566.566,0,0,1,.8,0l1.864,1.864,6.393-6.393a.566.566,0,0,1,.8,0l4.129,4.129v5.284H7.548Z" transform="translate(0 -2.25)" fill="#00c500" fill="currentColor"/>
+						</svg>
+					</li>
+					<li class="list-group-item filter-by-li"  onclick="Wo_FilterPostBy('video');" dir="auto" style="color: #FF268D;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="27.501" height="20" viewBox="0 0 27.501 20">
+							<path id="Path_9938" data-name="Path 9938" d="M3542.75,13859a1.216,1.216,0,0,1,1.25,1.25v5.25l6.513-4.5a.532.532,0,0,1,.875.127.718.718,0,0,1,.113.375v15a.6.6,0,0,1-.625.625h-.362L3544,13872.5v5.252a1.215,1.215,0,0,1-1.25,1.25h-17.5a1.215,1.215,0,0,1-1.25-1.25v-17.5a1.216,1.216,0,0,1,1.25-1.25Zm-8.75,5-5,5h3.75v5h2.5v-5H3539Z" transform="translate(-3524 -13859)" fill="currentColor" fill="#ff268d"/>
+						</svg>
+					</li>
+					<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('music');" dir="auto" style="color: #B54EAF;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="22.895" height="22.895" viewBox="0 0 22.895 22.895">
+							<path id="Path_9205" data-name="Path 9205" d="M3483.882,13635.975v8.473a3.559,3.559,0,0,1-.664,2.06,3.657,3.657,0,0,1-1.729,1.261,3.427,3.427,0,0,1-2.14-.115,3.545,3.545,0,0,1-1.706-1.259,3.351,3.351,0,0,1,.069-4.007,3.665,3.665,0,0,1,1.751-1.259,3.4,3.4,0,0,1,2.129.114V13633a11.448,11.448,0,1,1-2.289,0v2.4a8.7,8.7,0,0,0-5.907,3.206,9.348,9.348,0,0,0-2.083,6.41,9.235,9.235,0,0,0,9.135,8.586,8.993,8.993,0,0,0,5.827-2.062,9.2,9.2,0,0,0,2.232-11.446A9.4,9.4,0,0,0,3483.882,13635.975Z" transform="translate(-3469 -13633)" fill="currentColor" fill="#b54eaf"/>
+						</svg>
+					</li>
+					<?php if ($wo['config']['fileSharing'] == 1) { ?>
+					<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('files');" dir="auto" style="color: #74D5F5;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="22.656" height="21.577" viewBox="0 0 22.656 21.577">
+							<path id="Path_9947" data-name="Path 9947" d="M3533.315,3136v21.577H3529V3136Zm12.946,0a2.154,2.154,0,0,1,2.158,2.147v17.283a2.148,2.148,0,0,1-2.158,2.147h-10.789V3136Zm-4.315,6.473-4.315,4.316h3.237v4.315h2.157v-4.315h3.237Zm9.709,4.316v4.315H3549.5v-4.315Zm0-6.473v4.315H3549.5v-4.315Z" transform="translate(-3529 -3136)" fill="currentColor" fill="#74d5f5"/>
+						</svg>
+					</li>
+					<?php } ?>
+					<?php if ($wo['config']['google_map'] == 1 || $wo['config']['yandex_map'] == 1) { ?>
+					<li class="list-group-item filter-by-li" onclick="Wo_FilterPostBy('maps');" dir="auto" style="color: #F50E16;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18.854" height="22.761" viewBox="0 0 18.854 22.761">
+							<path id="Path_9940" data-name="Path 9940" d="M3655.748,5866.465a7.337,7.337,0,0,0,1.414-7.939,7.43,7.43,0,0,0-2.7-3.227,7.356,7.356,0,0,0-8.066,0,7.433,7.433,0,0,0-2.7,3.227,7.339,7.339,0,0,0,1.414,7.939,6.277,6.277,0,0,1,10.642,0Zm-5.321,8.3-6.662-6.672a9.435,9.435,0,1,1,13.324,0Zm0-12.287a3.146,3.146,0,1,1,2.221-.921A3.139,3.139,0,0,1,3650.427,5862.475Z" transform="translate(-3641 -5852)" fill="currentColor" fill="#f50e16"/>
+						</svg>
+					</li>
+					<?php } ?>
+				</ul>
+			<?php } ?>
+			<div class="btn btn-main btn-active posts-count" onclick="Wo_GetNewPosts();"></div>
+			<div class="posts_load">
+				<div id="posts-laoded">
+					<div class="wo_loading_post">
+						<div class="lightui1-shimmer"> <div class="_2iwr"></div> <div class="_2iws"></div> <div class="_2iwt"></div> <div class="_2iwu"></div> <div class="_2iwv"></div> <div class="_2iww"></div> <div class="_2iwx"></div> <div class="_2iwy"></div> <div class="_2iwz"></div> <div class="_2iw-"></div> <div class="_2iw_"></div> <div class="_2ix0"></div> </div>
+					</div>
+					<div class="wo_loading_post">
+						<div class="lightui1-shimmer"> <div class="_2iwr"></div> <div class="_2iws"></div> <div class="_2iwt"></div> <div class="_2iwu"></div> <div class="_2iwv"></div> <div class="_2iww"></div> <div class="_2iwx"></div> <div class="_2iwy"></div> <div class="_2iwz"></div> <div class="_2iw-"></div> <div class="_2iw_"></div> <div class="_2ix0"></div> </div>
+					</div>
+				</div>
+			</div>
+			<!-- #posts -->
+		</div>
+	</div>
+</div>
+<!-- .col-md-8 -->
+<?php echo Wo_LoadPage('sidebar/content'); ?>
+<!-- .page-margin -->
+
+<?php
+if ($wo['user']['social_login'] == 1) {
+  echo Wo_LoadPage('modals/create-password');
+}
+?>
+
+<script type="text/javascript">
+
+$(function() {
+    loadposts();
+});
+
+
+// $(document).on('click', '.story-image-wrapper', function(event) {
+//   event.preventDefault();
+//   $value = $(this).parents(".story-container").attr('data-status-id');
+//   $.post(Wo_Ajax_Requests_File() + '?f=story_view', {id: $value}, function(data, textStatus, xhr) {
+
+//   });
+// });
+
+
+
+/* Standard syntax */
+document.addEventListener("fullscreenchange", function() {
+  $('video').toggleClass('active-player');
+});
+
+/* Firefox */
+document.addEventListener("mozfullscreenchange", function() {
+  $('video').toggleClass('active-player');
+});
+
+/* Chrome, Safari and Opera */
+document.addEventListener("webkitfullscreenchange", function() {
+  $('video').toggleClass('active-player');
+});
+
+/* IE / Edge */
+document.addEventListener("msfullscreenchange", function() {
+  $('video').toggleClass('active-player');
+});
+
+
+function loadposts() {
+	$("#posts-laoded").load(Wo_Ajax_Requests_File() + '?f=load_posts', function enter() {
+		Wo_FinishBar();
+		window.fbAsyncInit = function() {
+		  FB.init({
+			appId      : '374255706379985',
+			xfbml      : true,
+			version    : 'v3.2'
+		  });
+		};
+	  	$(".post-description p, .product-description").each(function(index, el) {
+	  		ReadMoreText(this);
+	  	});
+	  	$(".post-commet-textarea .textarea").triggeredAutocomplete({
+	       hidden: '#hidden_inputbox_comment',
+	       source: Wo_Ajax_Requests_File() + "?f=mention",
+	       trigger: "@"
+	    });
+	  	$(".comment-reply textarea").triggeredAutocomplete({
+	       hidden: '#hidden_inputbox_comment_reply',
+	       source: Wo_Ajax_Requests_File() + "?f=mention",
+	       trigger: "@"
+	    });
+	    $('#load-more-posts').show();
+
+	});
+}
+  <?php if ($wo['user']['social_login'] == 1) { ?>
+  $(window).on("load", function (e) {
+       $('#create-password').modal('show');
+    });
+  $(function() {
+    var create_password_container = $('#create-password');
+    $('form.create-password').ajaxForm({
+      url: Wo_Ajax_Requests_File() + '?f=update_new_logged_user_details',
+      beforeSend: function() {
+        Wo_progressIconLoader($('form.create-password').find('button'));
+      },
+      success: function(data) {
+        if (data.status == 200) {
+          create_password_container.find('.error-container').html("<div class='alert alert-success'>" + data.message + "</div>");
+           $('#update-username').attr('href', data.url);
+           setTimeout(function() {
+            $('#create-password').modal('hide');
+           }, 1500);
+        } else {
+          var errors = data.errors.join("<br>");
+          create_password_container.find('.error-container').html("<div class='alert alert-danger'>" + errors + "</div>");
+        }
+        Wo_progressIconLoader($('form.create-password').find('button'));
+      }
+    });
+  });
+<?php } ?>
+
+<?php if (Wo_IsMobile() == true) { ?>
+function Wo_StorePosts(type) {
+  if (type > 1) {
+     return false;
+  }
+  if (type == 0) {
+    $('.order-text').text('<?php echo $wo['lang']['all'] ?>');
+  } else {
+    $('.order-text').text('<?php echo $wo['lang']['people_i_follow'] ?>');
+  }
+  $('#posts-laoded').html('<div class="wo_loading_post"><div class="wo_loading_post_child"></div></div>');
+  $.get(Wo_Ajax_Requests_File() + '?f=update_order_by', {type:type}, function (data) {
+    if (data.status == 200) {
+      loadposts();
+    }
+  });
+}
+<?php } ?>
+
+function Wo_ViewAnnouncement(id) {
+    var announcement_container = $('.home-announcement');
+    $.get(Wo_Ajax_Requests_File() + '?f=update_announcement_views', {id:id}, function (data) {
+      if (data.status == 200) {
+          announcement_container.slideUp(200, function () {
+            $(this).remove();
+          });
+      }
+    });
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*60*60*1000));
+    var expires = "expires="+ d;
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookieValue(a) {
+    var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+}
+
+$(function () {
+    var is_day_enabled = getCookieValue('day_status');
+    var myDate = new Date();
+    var hrs = myDate.getHours();
+    var greet;
+    var color;
+	var quote;
+    if (hrs < 12) {
+        greet = '<?php echo $wo['lang']['good_morning']?>, <?php echo $wo['user']['name']?> <img src="<?php echo $wo['config']['theme_url'];?>/img/park.png"/>';
+        color = '#7FC583';
+		quote = '<?php echo $wo['lang']['good_morning_quote']?>';
+    } else if (hrs >= 12 && hrs <= 18) {
+        greet = '<?php echo $wo['lang']['good_afternoon']?>, <?php echo $wo['user']['name']?> <img src="<?php echo $wo['config']['theme_url'];?>/img/desert.png"/>';
+        color = '#ffc107';
+		quote = '<?php echo $wo['lang']['good_afternoon_quote']?>';
+    } else if (hrs >= 18 && hrs <= 24) {
+        greet = '<?php echo $wo['lang']['good_evening']?>, <?php echo $wo['user']['name']?> <img src="<?php echo $wo['config']['theme_url'];?>/img/sea.png"/>';
+        color = '#FF4F70';
+		quote = '<?php echo $wo['lang']['good_evening_quote']?>';
+    }
+    if (is_day_enabled != 1) {
+      setTimeout(function () {
+        $('.greetalert').css('border-color', color );
+        $('#daynightmsg').html('<div class="small-texts">' + greet + '</div><p>' + quote + '</p>');
+        $('.greetalert').removeClass('hidden');
+      }, 100);
+    }
+});
+</script>

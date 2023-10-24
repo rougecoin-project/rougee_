@@ -1,0 +1,26 @@
+{strip}
+{assign var=popup_title value="{if $incomingcall}{$this->recipient['fullname']} is calling you...{else}Calling {$this->recipient['fullname']}...{/if}"}
+{include "{dirname(__DIR__)}/header.html"}
+
+{assign var="host_url" value=$this->settings['HOST']}
+{if isset($this->wowonder_url)}
+{assign var="host_url" value=$this->wowonder_url}
+{/if}
+<div id="msn_bg_eff" class="msn_calls_blur __none" style="background-image:url({$host_url}/{$this->recipient['avatar']});"></div>
+<div class="vy_msn_34vbg">
+	<div class="vymsn-callpopup-desktop-u-dt">
+		<div class="vymsn_udt_av">
+			<div class="callpopup-background-cl-av" style="background-image:url({$host_url}/{$this->recipient['avatar']});"></div>
+		</div>
+	<div class="vymsn_fji2c12potyy">
+		<div class="vymsn_udt_fn">
+			<div class="vymsn_udt_fn2">{$this->recipient['fullname']}</div>
+		</div>
+	<div class="vymsn_do215" id="vymsn_call_status">{$this->lang['Call_Connecting...']}</div>
+	<div class="vymsn_f325sf" id="vymsn_call_error"></div>
+	</div></div>
+
+</div>
+
+{include "{dirname(__DIR__)}/footer.html"}
+{/strip}

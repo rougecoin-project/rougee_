@@ -1,0 +1,51 @@
+<style>
+	@media (min-width: 1200px){
+		.col-lg-3 {
+			padding-left: 15px;
+		}
+	}
+</style>
+<div class="leftcol-sidebar"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-7 singlecol">
+				<div class="page-margin mt-0">
+					<div class="wo_page_hdng pag_neg_padd pag_alone">
+						<div class="wo_page_hdng_innr big_size">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="21.778" viewBox="0 0 28 21.778">
+						<defs>
+							<linearGradient id="linear-gradient318" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+							<stop offset="0" stop-color="#e335f1"></stop>
+							<stop offset="1" stop-color="#fc6519"></stop>
+							</linearGradient>
+						</defs>
+						<path id="Icon_awesome-images" data-name="Icon awesome-images" d="M23.333,20.917v.778A2.333,2.333,0,0,1,21,24.028H2.333A2.333,2.333,0,0,1,0,21.694V9.25A2.333,2.333,0,0,1,2.333,6.917h.778V17.028A3.893,3.893,0,0,0,7,20.917ZM28,17.028V4.583A2.333,2.333,0,0,0,25.667,2.25H7A2.333,2.333,0,0,0,4.667,4.583V17.028A2.333,2.333,0,0,0,7,19.361H25.667A2.333,2.333,0,0,0,28,17.028ZM12.444,6.917a2.333,2.333,0,1,1-2.333-2.333A2.333,2.333,0,0,1,12.444,6.917Zm-4.667,7,2.7-2.7a.583.583,0,0,1,.825,0l1.921,1.921L19.81,6.551a.583.583,0,0,1,.825,0l4.254,4.254V16.25H7.778Z" transform="translate(0 -2.25)" fill="url(#linear-gradient318)"></path>
+						</svg><?php echo $wo['lang']['my_albums']; ?>
+						</div>
+						<a class="btn btn-main btn-mat btn-mat-raised create-btn-bottom" href="<?php echo Wo_SeoLink('index.php?link1=create-album');?>" data-ajax="?link1=create-album"><svg height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g id="_03_Login" data-name="03 Login"><path d="m256 512a25 25 0 0 1 -25-25v-462a25 25 0 0 1 50 0v462a25 25 0 0 1 -25 25z"/><path d="m487 281h-462a25 25 0 0 1 0-50h462a25 25 0 0 1 0 50z"/></g></svg></a>
+					</div>
+				</div>
+			<div class="page-margin wow_content">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+						<div class="wo_my_pages wo_my_albums_page">
+				<div class="row">
+					<?php
+						$albums = Wo_GetUserAlbums($wo['user_id']);
+						if (count($albums) > 0) {
+							foreach ($albums as $wo['album']) {
+								echo Wo_LoadPage('album/album-list');
+							}
+						} else {
+							echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,16V4A2,2 0 0,0 20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16M11,12L13.03,14.71L16,11L20,16H8M2,6V20A2,2 0 0,0 4,22H18V20H4V6" /></svg> ' . $wo['lang']['no_albums_found'] . '</div>';
+						}
+					?>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<?php echo Wo_LoadPage('sidebar/content'); ?>

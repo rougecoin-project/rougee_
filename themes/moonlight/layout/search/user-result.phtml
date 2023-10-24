@@ -1,0 +1,32 @@
+<div class="col-md-4 col-sm-4 nearby_user_wrapper_prnt">
+	<div class="fndfrnd_user_wrapper">
+		<div class="avatar">
+			<a href="<?php echo $wo['result']['url']. $wo['marker'];?>ref=se" data-ajax="?link1=timeline&u=<?php echo $wo['result']['username']?>&ref=se"><img src="<?php echo $wo['result']['avatar'];?>" alt="<?php echo $wo['result']['name']; ?> Profile Picture" /></a>
+			<?php if($wo['config']['user_lastseen'] == 1 && $wo['result']['showlastseen'] != 0) { ?>
+				<div class="search-userActive"><p><?php echo $wo['lang']['last_active']; ?> <?php echo Wo_UserStatus($wo['result']['user_id'],$wo['result']['lastseen']); ?></p></div>
+			<?php } ?>
+			<div class="fndfrnd_user_wrapper_bg">
+				<h4 class="user_wrapper_link">
+					<span class="user-popover" data-type="<?php echo $wo['result']['type']; ?>" data-id="<?php echo $wo['result']['id']; ?>" data-search-type="<?php echo $wo['result']['type']; ?>">
+						<a href="<?php echo $wo['result']['url']. $wo['marker'];?>ref=se" data-ajax="?link1=timeline&u=<?php echo $wo['result']['username']?>&ref=se"><?php echo $wo['result']['name']; ?></a>
+					</span>
+				</h4>
+				<ul class="list-unstyled sun_friends_fetrs">
+					<li>
+						<div><p><?php echo Wo_CountFollowers($wo['result']['user_id']);?> <?php if ($wo['config']['connectivitySystem'] == 1) { echo $wo['lang']['friends_btn'];} else { echo $wo['lang']['followers'];} ?></p></div>
+					</li>
+					<span>&bull;</span>
+					<li>
+						<div><p><?php echo $wo['result']['details']['post_count'];?> <?php echo $wo['lang']['posts']; ?></p></div>
+					</li>
+				</ul>
+				<?php if (!isset($wo['result']['no_btn'])) { ?>
+					<div class="user-follow-button">
+						<?php echo Wo_GetFollowButton($wo['result']['user_id']);?>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

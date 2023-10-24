@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>{if $connecting == 'yes'}{$this->lang['Call_Connecting...']}{else}{$this->lang['Call_Contacting...']}{/if} {$user.fullname}</title>
+
+ 
+<!-- css ---->
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans%3A400%2C700&ver=4.2.3" type="text/css" media="all">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic,|Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic," type="text/css" media="all">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A300%7CUbuntu+Condensed%7CUbuntu%7CRaleway%3A300%2C500%2C400%7CPT+Sans+Narrow&amp;ver=4.3.1" type="text/css" media="all">
+<!--- static fonts -->
+<link rel="stylesheet" type="text/css" href="{$wo['config']['theme_url']}/stylesheet/vaneayoung/fonts/fonts.css?v=4">
+
+<link id="favicon" rel="shortcut icon" href="{$this->settings['HOST']}/{$user.profile_photo}" type="image/x-icon">
+
+
+
+ <link rel="stylesheet" scomm="common-global-style" type="text/css" href="{$wo['config']['theme_url']}/stylesheet/vaneayoung/messenger.css?v2">
+
+
+ 
+<!-- js core-->
+<script>
+ 
+
+ var hangUpCall = function(){};
+var stopCallingSound = function(){};
+ var redial = function(){};
+ var callEnded = function(){};
+var ringing_sound,
+  end_time;
+</script>
+
+<script>
+var up_href, 
+iframe = '{$iframe}',
+peer,
+chat_default_color =  '#666', 
+	NODE_HOST_NAME = 'server.vaneayoung.de',
+	NODE_PORT = '{$this->settings['NODE_PORT']}',
+	NODE_HOST = 'https://server.vaneayoung.de:3000',
+	_HTTP = "https://",
+    _THEME = "{$wo['config']['theme_url']}",
+	THEME_URL = "{$wo['config']['theme_url']}",
+	_BLANK = "{$smarty.const.__TRANS_BG}",
+    __SITENAME = '{$wo['config']['siteName']}',
+    __SITEURL = '{$this->settings['HOST']}',
+	  lang = {json_encode($this->lang)};
+	  
+
+var sio = iframe == 'yes' ? window.parent.sio : window.opener.parent.sio;
+// import variables from parent window
+var peer = iframe == 'yes' ? window.parent._peer : window.opener.parent._peer;
+var socket = sio;
+var existingCall = iframe == 'yes' ? window.parent.existingCall : window.opener.parent.existingCall;
+var call_user_answered = iframe == 'yes' ? window.parent.call_user_answered : window.opener.parent.call_user_answered;
+
+</script>
+
+
+
+<style>
+{literal}
+html{
+  padding:0;
+  margin:0;
+}
+body{
+  font-family: -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  font-size: 12.5px;
+  color: #333;  
+  overflow:auto;
+  background:#e9ebee;
+  background-image:none!important;
+  padding:0;
+  margin:0;
+}{/literal}</style>
+
+<script type="text/javascript" src="{$wo['config']['theme_url']}/javascript/jquery-3.1.1.min.js"></script>
+
+<!-- peerjs -->
+<script src="{$wo['config']['theme_url']}/javascript/vaneayoung/peer.min.js"></script>
+<script src="{$wo['config']['theme_url']}/javascript/vaneayoung/soundmanager2-jsmin.js?v=421321"></script>
+<script type="text/javascript" src="{$wo['config']['theme_url']}/javascript/vaneayoung/messenger.js?v224"></script>
+
+<script type="text/javascript" src="{$wo['config']['theme_url']}/javascript/vaneayoung/easytimer.min.js?v262"></script>
+
+ </head> 
+ 
+ <body class="{if $iframe == 'yes'}iframepopup{/if}">
+
+<div id="important" class="callpopup-important-container {if $call_type == 'video'}video-call{/if}">
+
+<div class="callpopup-background-cl" style="background-image:url({$user_avatar});"></div>
+
+
+<div class="callpopup-header">
+	<div class="callpopup-uinfo">{$user.fullname}</div>
+	<div class="callpopup-str"><span id="calling_status">{if $connecting == 'yes'}{$this->lang['Call_Connecting...']}{else}{$this->lang['Call_Contacting...']}{/if}</span></div>
+		<div class="callpopup-str" id="end-time"></div>
+	<div class="callpopup-str error" id="calling_error"></div>
+</div>
+
+
+<div id="recipient-media-element-err"></div>
+
+<div class="callpopup-footer">
+<a href="javascript:void(0);" onclick="hangUpCall(this,event);" id="hangup" class="callpopup-hangup"></a>
+<a href="javascript:void(0);" onclick="redial(this,event);" id="redial" class="callpopup-redial __none"></a>
+
+
+
+
+
+</div>
+
+ 
+
+
+
+
+

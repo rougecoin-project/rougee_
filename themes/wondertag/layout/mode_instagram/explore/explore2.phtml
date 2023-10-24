@@ -1,0 +1,369 @@
+<div class="page-margin">
+  <div class="container">
+  <div id="lightbox-container" class="lightbox-container">
+  <div class="lightbox-content">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+      <?php 
+              $i = 0; // Set a counter for the number of videos displayed
+              foreach ($wo['explore_posts'] as $wo['story']) { 
+                if ($i >= 15) { // If 15 videos have already been displayed, break out of the loop
+                  break;
+                }
+                $i++; // Increment the counter
+            ?>
+          <!-- Swiper slide -->
+          <div class="swiper-slide">
+            <div class="reel-post">
+              <div class="reel-media">
+                <?php if ($wo['story']['model_type'] == 'video') { ?>
+                  <video data-post-id="<?php echo $wo['story']['id']; ?>" class="reel-video reel-views" onplay=""  autoplay muted loop playsinline data-post-video-views="<?php echo $wo['story']['id']; ?>"><?php echo $wo['story']['videoViews'];?>
+                    <source src="<?php echo Wo_GetMedia($wo['story']['postFile']); ?>" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                <?php } ?>
+              </div>
+              <div class="overlay-controls">
+                <a href="<?php echo $wo['config']['site_url'] . '/' . $wo['story']['publisher']['username']; ?>">
+                  <img src="<?php echo str_replace('https://rougee.io/', '', $wo['story']['publisher']['avatar']); ?>" alt="<?php echo str_replace('https://rougee.io/', '', $wo['story']['publisher']['name']); ?>" class="user-avatar">
+                </a>
+                <span class="mute-button" onclick="toggleMute(event)">
+                  <i class="fas fa-volume-up"></i>
+                </span>
+              </div>
+              <div class="post-stats">
+              <div class="username">
+                  <?php echo $wo['story']['publisher']['name']; ?>
+                  <?php if ($wo['story']['publisher']['verified'] == 1) { ?>
+                    <span class="verified-color fs-14" title="" data-toggle="tooltip" data-original-title="Verified User">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512"><path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0" fill="#2196f3"></path><path d="m385.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" fill="#fff"></path></svg></span><br>
+                      <?php if (Wo_IsUserPro($wo['story']['publisher']['is_pro']) === true) {
+                        $user_pro_type = Wo_GetUserProType($wo['story']['publisher']['pro_type']);
+                      ?>
+                        <span class="badge-pro" style="border-radius: 15%; background-color:<?php echo $user_pro_type['color_name'];?>">
+                          <a class="badge-link" href="<?php echo Wo_SeoLink('index.php?link1=go-pro');?>" title="<?php echo $user_pro_type['type_name'];?>" data-toggle="tooltip" style="font-size: 10px;">PRO</a>
+                        </span>
+                      <?php } ?>
+                  <?php } ?>
+                </div>
+                <div class="reel-views">
+                  <i class="fas fa-eye"></i>
+                  <span data-post-video-views="<?php echo $wo['story']['id']; ?>"><?php echo $wo['story']['videoViews'];?></span>
+                </div>
+                <div class="likes">
+                  <i class="fas fa-bolt"></i>
+                  <span><?php echo $wo['story']['post_likes']; ?></span>
+                </div>
+                <div class="comments">
+                  <i class="fas fa-comment" data-post-id="<?php echo $wo['story']['id']; ?>"></i>
+                  <span><?php echo $wo['story']['post_comments']; ?></span>
+                </div>
+                <div class="shares">
+                  <i class="fas fa-share-nodes share-icon" data-post-id="<?php echo $wo['story']['id']; ?>" data-user-id="<?php echo $wo['story']['user_id']; ?>"></i>
+                  <span><?php echo $wo['story']['post_shares']; ?></span>
+                </div>
+				<div class="reel-views">
+				<a href="/home" class="post-link-button">
+                  <i class="fas fa-home"></i>
+				  </a>
+                </div>
+                <a href="<?php echo $wo['config']['site_url'] . '/post/' . $wo['story']['id']; ?>" class="post-link-button">
+                  <span class="btn btn-default btn-mat tag_pub_box_bg_text" style="width: 36px;">View Post</span>
+                </a>
+				<a href="" class="post-link-button">
+                  <span style="margin-top: 5px; background-color: rgba(0, 0, 0, 0.073) !important;" class="btn btn-default btn-mat tag_pub_box_bg_text" style="width: 36px;">Cycle</span>
+                </a>
+                <style>
+                  .initial-truncated-state {
+                    white-space: wrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  }
+                </style>
+            <div style="background-color: rgba(0, 0, 0, 0);cusor: pointer;" class="valign stat-item tag_post_foot_acticon share" <?php echo(PatreonPostSubscribed($wo['story']['user_id'],$wo['story']['id']) ? 'onclick="Wo_SharePostOn('.$wo['story']['id'].','.$wo['story']['user_id'].',\'timeline\')"' : '') ?> title="<?php echo $wo['lang']['share'];?>" data-toggle="tooltip">
+              <?php echo GetModeBtn('share_btn');?>
+            </div>
+                <div class="">
+                  <div class="caption-content">
+                    <span class="truncated-text initial-truncated-state"><?php echo $wo['story']['postText']; ?></span>
+                    <a href="#" class="read-more"></a>
+                  </div>
+                  <div class="username-timestamp">
+                    <span class="timestamp"><?php echo Wo_Time_Elapsed_String($wo['story']['time']); ?></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+    </div>
+    </div>
+    </div>
+    <span class="close-button" onclick="closeLightbox()">&times;</span>
+  </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Include Swiper's CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<!-- Include Swiper's JavaScript -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Include jQuery -->
+<script>
+
+
+function openLightbox() {
+  $('#lightbox-container').show();
+  $('body').css('overflow', 'hidden');
+}
+
+$(document).ready(function() {
+  $('.reel-post').on('click', function() {
+    openLightbox();
+  });
+});
+
+function closeLightbox() {
+  $('#lightbox-container').hide();
+  $('body').css('overflow', 'auto');
+}
+
+$(document).ready(function() {
+  $('.close-button').on('click', function() {
+    closeLightbox();
+  });
+});
+    /* ========
+Debugger plugin, simple demo plugin to console.log some of callbacks
+======== */
+    function myPlugin({ swiper, extendParams, on }) {
+      extendParams({
+        debugger: false,
+      });
+
+      on('init', () => {
+        if (!swiper.params.debugger) return;
+        console.log('init');
+      });
+      on('click', (swiper, e) => {
+        if (!swiper.params.debugger) return;
+        console.log('click');
+      });
+      on('tap', (swiper, e) => {
+        if (!swiper.params.debugger) return;
+        console.log('tap');
+      });
+      on('doubleTap', (swiper, e) => {
+        if (!swiper.params.debugger) return;
+        console.log('doubleTap');
+      });
+      on('sliderMove', (swiper, e) => {
+        if (!swiper.params.debugger) return;
+        console.log('sliderMove');
+      });
+      on('slideChange', () => {
+        if (!swiper.params.debugger) return;
+        console.log(
+          'slideChange',
+          swiper.previousIndex,
+          '->',
+          swiper.activeIndex
+        );
+      });
+      on('slideChangeTransitionStart', () => {
+        if (!swiper.params.debugger) return;
+        console.log('slideChangeTransitionStart');
+      });
+      on('slideChangeTransitionEnd', () => {
+        if (!swiper.params.debugger) return;
+        console.log('slideChangeTransitionEnd');
+      });
+      on('transitionStart', () => {
+        if (!swiper.params.debugger) return;
+        console.log('transitionStart');
+      });
+      on('transitionEnd', () => {
+        if (!swiper.params.debugger) return;
+        console.log('transitionEnd');
+      });
+      on('fromEdge', () => {
+        if (!swiper.params.debugger) return;
+        console.log('fromEdge');
+      });
+      on('reachBeginning', () => {
+        if (!swiper.params.debugger) return;
+        console.log('reachBeginning');
+      });
+      on('reachEnd', () => {
+        if (!swiper.params.debugger) return;
+        console.log('reachEnd');
+      });
+    }
+  </script>
+<script type="text/javascript">
+  
+  function initializeSwiper() {
+  const swiper = new Swiper('.swiper-container', {
+    direction: 'vertical',
+    modules: [myPlugin],
+    spaceBetween: 0,
+    mousewheel: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+
+  swiper.on('slideChange', function () {
+    // Pause all videos that are currently playing
+    $('.reel-video').each(function () {
+      if (!this.paused) {
+        this.pause();
+      }
+    });
+
+    // Play the video in the active slide
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    const activeVideo = activeSlide.querySelector('.reel-video');
+    if (activeVideo) {
+      activeVideo.play();
+    }
+  });
+}
+
+$(document).ready(function() {
+  openLightbox();
+  initializeSwiper();
+});
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const elements = document.getElementsByClassName('tag_hdr_right');
+
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'none';
+    }
+});
+
+  
+
+  $(document).ready(function () {
+  $('.load-more-button').on('click', function () {
+    location.reload();
+  });
+});
+
+$(document).ready(function () {
+  $('.read-more').on('click', function (e) {
+    e.preventDefault();
+    const truncatedText = $(this).siblings('.truncated-text');
+    const isTruncated = truncatedText.hasClass('initial-truncated-state');
+
+    if (isTruncated) {
+      truncatedText.css({
+        'white-space': 'normal',
+        'overflow': 'visible',
+        'text-overflow': 'clip',
+      }).removeClass('initial-truncated-state');
+      $(this).text('Read Less');
+    } else {
+      truncatedText.css({
+        'white-space': 'nowrap',
+        'overflow': 'hidden',
+        'text-overflow': 'ellipsis',
+      }).addClass('initial-truncated-state');
+      $(this).text('Read More');
+    }
+  });
+});
+
+$(document).ready(function () {
+  // Check if videos are in widescreen format and add the 'wide' class
+  $('.reel-video').each(function () {
+    const video = $(this);
+    video.on('loadedmetadata', function () {
+      const aspectRatio = video[0].videoWidth / video[0].videoHeight;
+      if (aspectRatio > 1) { // Widescreen format (e.g., 16:9)
+        video.parent().addClass('wide');
+      }
+    });
+  });
+});
+
+
+document.querySelectorAll('.reel-video').forEach(function (post) {
+    post.addEventListener('click', function () {
+      toggleMute(event);
+    });
+});
+
+let globalMuteState = false;
+
+function toggleMute(e) {
+  e.stopPropagation(); // Prevent triggering click event on parent elements
+
+  const videoElement = e.target.closest('.reel-post').querySelector('.reel-video');
+  const muteButtonIcon = e.target.closest('.reel-post').querySelector('.mute-button i');
+  videoElement.muted = !videoElement.muted;
+  
+  // Update the mute button icon
+  if (muteButtonIcon.classList.contains('fa-volume-up')) {
+    muteButtonIcon.classList.remove('fa-volume-up');
+    muteButtonIcon.classList.add('fa-volume-mute');
+  } else {
+    muteButtonIcon.classList.remove('fa-volume-mute');
+    muteButtonIcon.classList.add('fa-volume-up');
+  }
+}
+
+
+
+</script>
+<script>
+$(document).ready(function() {
+    let last_id;
+    let loading = false;
+
+    function loadMorePosts() {
+        if (loading) return;
+        loading = true;
+        $.get(
+    Wo_Ajax_Requests_File(),
+    {
+            url: 'load_more_posts.php',
+            type: 'POST',
+            data: {
+                last_id: last_id
+            },
+            dataType: 'json',
+            success: function(posts) {
+                if (posts.length > 0) {
+                    posts.forEach(function(post) {
+                        // Display the post on the page
+                        // You can use post.main_thumb, post.model_type, etc. to display the content
+                        // You may need to modify this line based on the structure of your HTML
+                        $('#posts-container').append('<div class="post">' + post.main_thumb + '</div>');
+                    });
+
+                    last_id = posts[posts.length - 1].id;
+                }
+                loading = false;
+            },
+            error: function() {
+                loading = false;
+            }
+        });
+    }
+
+    // Set initial last_id value from the last post in the initial set of 15 posts
+    last_id = <?php echo $wo['explore_posts'][count($wo['explore_posts']) - 1]['id']; ?>;
+    
+    // Check if the user has scrolled to the bottom of the page
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200) {
+            loadMorePosts();
+        }
+    });
+});
+</script>

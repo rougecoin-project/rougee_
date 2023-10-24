@@ -1,0 +1,8 @@
+{
+  "apps" : [{
+    "name"        : "Live Stream Plugin Runtime Application",
+    "script"      : "backend",
+    "watch"       : true,
+    "cwd"         : "rougee.io/public_html/nodejs/kontackt/live/app.json",
+  }]
+}

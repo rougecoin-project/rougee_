@@ -1,0 +1,24 @@
+<?php if (!empty($wo['story']['photo_album'])) { ?>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <?php foreach ($wo['story']['photo_album'] as $index => $photo) {
+                $multi_image_function = "Wo_OpenAlbumLightBox(" . $photo['id'] . ", \"album\");";
+                if (!empty($photo['parent_id'])) {
+                    $multi_image_function = "Wo_OpenLightBox(" . $photo['parent_id'] . ", \"album\");";
+                }
+                ?>
+                <div class="carousel-item <?php if ($index == 0) echo 'active'; ?>">
+                    <img class="d-block w-100" src="<?php echo Wo_GetMedia($photo['image_org']) ?>" alt="image" onclick="<?php echo $multi_image_function; ?>">
+                </div>
+            <?php } ?>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+<?php } ?>

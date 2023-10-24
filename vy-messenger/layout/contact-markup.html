@@ -1,0 +1,172 @@
+{strip}
+	<script rel="vy_ms__remove_on_dom_ready">{literal}if(typeof g_messenger_count == 'undefined')var g_messenger_count = {};{/literal}</script>
+	
+	{if $userid > 0 || $page_id > 0 || $group_id > 0}
+	 {include "{$this->theme_dir}/append-contact-markup.html" pages=$muted_arr}
+	{/if}
+
+	 
+	{foreach $contacts as $contact}
+
+
+	{assign var=last_message value=$this->getLastMessage($contact.user_id,$contact.page_id,$contact.group_id)}
+	{assign var=last_seen value=date(DATE_RFC2822,$contact['online'])}
+	{assign var=last_seen2 value=date(DATE_RFC2822,$contact['online'])}
+	{assign var=user_status value=$this->getUserStatus($contact.user_id)}
+	{assign var=fullname value="{$contact.first_name} {$contact.last_name}"}
+	{assign var=user_show_last_seen value=$contact.showlastseen}
+	{assign var=user_online_privacy value=$contact.online_status}
+	{assign var=avatar value=$this->get_avatar($contact.avatar)}
+	{if $contact.page_id > 0}
+	
+		{if empty($contact.first_name)}
+		
+		{assign var=ufullname value=$contact.username}
+		
+		{else}
+		
+		{assign var=ufullname value="{$contact.first_name} {$contact.last_name}"}
+		
+		{/if}
+		
+		{assign var=get_page_name value=$this->getPageDetails($contact.page_id,1,1)}
+		
+		{if $get_page_name[1] == $this->USER.id}
+			{assign var=fullname value="{$ufullname} ({$get_page_name[0]})"}
+		{else}
+			{assign var=fullname value=$get_page_name[0]}
+			{assign var=avatar value=$get_page_name[2]}
+		{/if}
+
+	{else if isset($contact.group_id) && $contact.group_id > 0}
+ 
+ 
+			{assign var=fullname value=$contact.group_name}
+ 
+	
+	
+	{else}
+	
+		{if empty($contact.first_name)}
+		{assign var=fullname value=$contact.username}
+		{/if}
+		
+	{/if}
+	{if $user_status}
+	{assign var=last_seen value=$this->lang['Active_now']}
+	{/if}
+	
+	{if !$user_show_last_seen}
+	{assign var=last_seen value=""}
+	{/if}
+	
+	
+	
+	{if $contact.page_id > 0}
+		{assign var=count_by_user value=$this->getCountByUser($contact.user_id,$contact.page_id)}
+		<script rel="vy_ms__remove_on_dom_ready">
+		var __vym_userid = {$contact.user_id}, __vym_pageid = {$contact.page_id}, __vym_count = {$count_by_user};
+		{literal}
+		g_messenger_count[__vym_userid+'_'+__vym_pageid] = __vym_count;
+		{/literal}
+		</script>
+	{else if $contact.group_id > 0}
+		{assign var=count_by_user value=$this->getCountByUser($contact.user_id,false,$contact.group_id)}
+		<script rel="vy_ms__remove_on_dom_ready">
+		var __vym_userid = {$contact.user_id}, __vym_groupid = {$contact.group_id}, __vym_count = {$count_by_user};
+		{literal}
+		g_messenger_count['GG'+__vym_groupid] = __vym_count;
+		{/literal}
+		</script>
+	{else}
+		{assign var=count_by_user value=$this->getCountByUser($contact.user_id)}
+		<script rel="vy_ms__remove_on_dom_ready">
+		var __vym_userid = {$contact.user_id}, __vym_groupid = 0, __vym_count = {$count_by_user};
+		{literal}
+		g_messenger_count[__vym_userid] = __vym_count;
+		{/literal}
+		</script>
+	{/if}
+ 
+	{assign var=new_message value=""}
+	{assign var=muted value=""}
+	
+	{if $count_by_user > 0}
+		{assign var=new_message value="_newmessages"}
+	{/if}	
+	
+	{if $contact.group_id > 0 && isset($muted_arr.groups[$contact.group_id])}
+		{assign var=new_message value=""}
+	{/if}
+	
+	{if $contact.group_id <= 0 && $contact.page_id <= 0 && isset($muted_arr.contacts[$contact.user_id])}
+		{assign var=new_message value=""}
+	{/if}
+	
+	{if (isset($muted_arr.contacts[$contact.user_id]) && $contact.page_id <= 0 && $contact.group_id <= 0) || isset($muted_arr.groups[$contact.group_id]) || isset($muted_arr.pages[$contact.page_id])}
+		{assign var=muted value="__muted"}
+	{/if}
+	
+	{if $userid != $contact.user_id || $page_id != $contact.page_id || $group_id != $contact.group_id}
+	<div class="vy_ms_contactbord">
+	<a href="/messenger/{if $contact.group_id > 0}g/{$contact.group_id}{else}{$contact.user_id}{if $contact.page_id > 0}/{$contact.page_id}{/if}{/if}" data-lastseen="{$last_seen2}" data-last-message-timestamp="{$last_message.time}" userfullname="{$fullname}" {if $contact.group_id > 0}id="contact-GG{$contact.group_id}"{else}id="contact-{$contact.user_id}{if $contact.page_id > 0}_{$contact.page_id}{/if}"{/if} class="pmessenger-contact-a {$new_message} {$muted} {if $contact.group_id > 0}vy_ms_contactisgroup contact_groupid_{$contact.group_id}{/if}" onclick="__j('.pmessenger-contact-a').removeClass('active');__j(this).addClass('active');messenger.openContact(this,event,'{$contact.user_id}','{$avatar}','{$fullname}','{$last_seen}','{$contact.page_id}','{$contact.group_id}','{$user_show_last_seen}','{$user_online_privacy}');">
+	<div  class="js_conv_swipe pmessenger-mleft12">
+			<div class="pmessenger-contact-avatar"> 
+			
+				<img src="{$avatar}" />
+				{if $user_online_privacy == '0'}<div class="only_ic global_user_online global_user_online_{$contact.user_id}">{if $user_status}<span class="ic-online"></span>{/if}</div>{/if}
+			</div>
+	
+			<div class="pmessenger-contact-info"> 
+			
+				<div class="pmessenger-contact-name ellip" title="{$fullname}">{$fullname}</div>
+				<div class="pmessenger-contact-last-msg ellip _1htf _6zke"><div class="_42dz5 ellip">{if empty($last_message.text)}--{else}{if $last_message.from_id == $this->USER.id}<span class="convo__msgAuthor">{$this->lang['You']}:</span>&nbsp;{/if}{str_replace('&amp;','&',$this->str_messenger(substr($last_message.text,0,150),1,20))}{/if}</div>
+				<div class="pmessenger-contact-last-msg-time"><div class="_6zkf">&#8729;</div><span class="_1ht7 _6zkh timestamp">{if empty($last_message.time)}-{else}{$this->lastMessageConvertTime($last_message.time)}{/if}</span></div>
+				</div> 
+				<div class="vy_ms__contactmuted">{$svgi.contacts.muted}</div>
+				{if isset($last_message.seen) && $contact.group_id <= 0}
+					{if $last_message.from_id == $this->USER.id}
+						<div class="_3fx44cc"> 
+
+							{if $last_message.seen > 0}
+								<div class="_3fx45cc" style="background-image:url({$avatar});"></div>
+							{else} 
+								<div class="contact-messenger_sent_Status"><i class="glyphicon contact-messenger-sent-ic glyphicon-ok-sign"></i></div>
+							{/if}
+							
+							
+								</div>
+							{/if}
+	
+				{else if isset($last_message.group_seen) && $contact.group_id > 0}
+
+							<div class="_3fx44cc">
+							{if !empty($last_message.group_seen)}
+								<div class="_3fx45cc" style="background-image:url({$avatar});"></div>
+							{else}  
+								<div class="contact-messenger_sent_Status"><i class="glyphicon contact-messenger-sent-ic glyphicon-ok-sign"></i></div>
+							{/if}
+							</div>
+							
+				{/if}
+							
+				{if $count_by_user > 0 && !empty($new_message)}<div class="convo__unread oval in_messenger">+{$count_by_user}</div>{/if}
+			</div>
+	</div> 
+	<div class="mob_delete_on_swipe js_mob_delete_conv_btn"><div title="{$this->lang['pm_delete_convers']}" {if $contact.group_id > 0}id="{$contact.group_id}"{/if} class="mob_del_swipe_txt js__mob_del_conv_ids {if $contact.group_id > 0}js__isgroup{/if}">{if $contact.group_id > 0}{$this->lang['Messenger_confirm_btn_leaving_group']}{else}{$this->lang['del_pm']}{/if}</div></div>
+	</a>
+	</div>
+ 
+	{/if}
+	 
+	{foreachelse}
+	
+	{if isset($nullreturn)}
+	0
+	{else}
+	<div class="pmessenger-no-contacts">{$this->lang['you_dosent_have_dialog_with_users']}</div>
+	{/if}
+	
+	{/foreach} 
+ 
+{/strip}

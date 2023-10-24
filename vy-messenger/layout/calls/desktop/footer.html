@@ -1,0 +1,49 @@
+{strip}
+				<div class="vy_ms_wbrtc_mediaelement" id="vy_ms_wbrtc_mediaelement">
+					
+					 	<div id="vymsn_videocall_media" class="{if $this->type == 'audio'}__none{/if}">
+							<div id="vy_msn_call_local_arrow_hide" class="__none sd0tyowg foed1vyy l30l7tkp alrytcbg r30xiam5 m0q0jmkx">{$this->svgs['call_local_window_arrow_hide']}</div>
+							<div id="vy_msn_call_local_arrow_show" class="__none sd0tyowg foed1vyy l30l7tkp alrytcbg r30xiam5 m0q0jmkx">{$this->svgs['call_local_window_arrow_show']}</div>
+							<div class="vy_msn_calls_localvideo_mask" id="vy_msn_videohov"></div>
+								
+					 
+							 <video playsinline  autoplay id="vy-ms__recipient-video-element"></video>
+							 <video playsinline  autoplay muted id="vy-ms__user-video-element"></video>
+						</div>
+				</div>
+
+
+<div class="vy_msn_fullbg_anim"></div>
+<canvas id="msn_freq" width="1024" height="525"></canvas>
+
+
+<footer class="vy_msn_footer_controls slidedown">
+	<div id="vymsn_footer" class="msn_fi34qpo3">
+			<div id="vymsn_footer_controls_btns" class="msn_footer_right_opts __none">
+				<button onclick="switch_camera(event,this);" class="msn_fgi32lfxg __none" title="Switch Camera" id="vymsn_switch_camera">{$this->svgs['switch_camera']}</button>
+				<button onclick="shareScreen(event,this);" class="msn_fgi32lfxg __none" title="Share your screen" id="vymsn_share_screen">{$this->svgs['calls_share_screen']}</button>
+
+				<button onclick="requestVideoChat(event,this);" class="msn_fgi32lfxg {if $this->type == 'video'}__none{/if}" title="Request video call" id="vymsn_request_video">{$this->svgs['calls_req_video']}</button>
+				<button onclick="removeVideoChat(event,this);" class="msn_fgi32lfxg {if $this->type == 'audio'}__none{/if}" title="Stop video" id="vymsn_remove_video">{$this->svgs['calls_remove_video']}</button>
+				<button onclick="muteMicrophone(event,this);" class="msn_fgi32lfxg" title="Mute your microphone" id="vymsn_mute_microphone">{$this->svgs['calls_microphone']}</button>
+			</div>
+			<div class="vmm243so2"><button onclick="hangup(event);" title="Hangup" class="msn_fgi32lfxg" id="vymsn_hang_up">{$this->svgs['calls_hangup']}</button></div>
+	</div>
+</footer>
+
+<script>
+{literal}
+window.onload = function() {
+	setRegisterState(NOT_REGISTERED);
+	connect();
+}
+
+window.onbeforeunload = function() {
+	hangup();
+	wss.close();
+}
+{/literal}
+</script>
+</body>
+</html>
+{/strip}

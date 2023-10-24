@@ -1,0 +1,33 @@
+<div class="leftcol-sidebar"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-7 middlecol">
+			<div class="page-margin mt-0">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_innr big_size">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#f55aff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"></path></svg><?php echo $wo['lang']['friends_stories']; ?>
+					</div>
+					<?php if ($wo['config']['can_use_groups']) { ?>
+						<a class="btn btn-main btn-mat btn-mat-raised create-btn-bottom" href="<?php echo Wo_SeoLink('index.php?link1=create-status'); ?>" data-ajax="?link1=create-status"><svg height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g id="_03_Login" data-name="03 Login"><path d="m256 512a25 25 0 0 1 -25-25v-462a25 25 0 0 1 50 0v462a25 25 0 0 1 -25 25z"></path><path d="m487 281h-462a25 25 0 0 1 0-50h462a25 25 0 0 1 0 50z"></path></g></svg></a>
+					<?php } ?>
+				</div>
+			</div>
+
+			<div class="wow_content user-status-home wow_story_mores">
+				<ul class="status-list">
+					<?php
+						if ($wo['config']['user_status'] == 1) {
+							$get_user_status = Wo_GetFriendsStatus(array('limit' => 100000));
+							if (!empty($get_user_status)) {
+								foreach ($get_user_status as $key => $wo['user_status']) {
+									echo Wo_LoadPage('home/user-status');
+								}
+							}
+						}
+					?>
+				</ul>
+			</div>
+		</div>
+		<?php echo Wo_LoadPage('sidebar/content');?>
+	</div>
+</div>

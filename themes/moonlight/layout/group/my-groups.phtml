@@ -1,0 +1,41 @@
+<div class="leftcol-sidebar"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-7 profile-lists singlecol">
+			<div class="page-margin mt-0">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_innr big_size">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27" height="26.997" viewBox="0 0 27 26.997">
+				<defs>
+					<linearGradient id="linear-gradient333" x1="0.5" y1="0.245" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+					<stop offset="0" stop-color="#de45ce"></stop>
+					<stop offset="1" stop-color="#7f2aee"></stop>
+					</linearGradient>
+				</defs>
+				<path id="Union_34" data-name="Union 34" d="M3847.183-2375.537a6.465,6.465,0,0,1,4.777,2.027,6.648,6.648,0,0,1,1.972,4.724v8.1h-13.5v-8.1a6.649,6.649,0,0,1,1.971-4.724A6.471,6.471,0,0,1,3847.183-2375.537Zm-9.06,4.054a8.614,8.614,0,0,0-.377,2.292l-.013.405v8.1h-4.049v-6.071a4.449,4.449,0,0,1,1.2-3.108,4.5,4.5,0,0,1,3.01-1.616Zm18.117,0a5.372,5.372,0,0,1,3.16,1.481,4.847,4.847,0,0,1,1.283,3.243v6.071h-4.052v-8.1A9.093,9.093,0,0,0,3856.24-2371.483Zm-17.833-8.1a3.8,3.8,0,0,1,2.39.946,3.459,3.459,0,0,1,.986,2.433,3.456,3.456,0,0,1-.986,2.429,3.8,3.8,0,0,1-2.39.946,3.8,3.8,0,0,1-2.39-.946,3.463,3.463,0,0,1-.984-2.429,3.465,3.465,0,0,1,.984-2.433A3.8,3.8,0,0,1,3838.407-2379.588Zm17.551,0a3.8,3.8,0,0,1,2.389.946,3.46,3.46,0,0,1,.986,2.433,3.457,3.457,0,0,1-.986,2.429,3.8,3.8,0,0,1-2.389.946,3.8,3.8,0,0,1-2.39-.946,3.452,3.452,0,0,1-.986-2.429,3.455,3.455,0,0,1,.986-2.433A3.8,3.8,0,0,1,3855.958-2379.588Zm-8.775-8.1a5.172,5.172,0,0,1,3.82,1.622,5.1,5.1,0,0,1,1.579,3.777,5.12,5.12,0,0,1-1.579,3.78,5.173,5.173,0,0,1-3.82,1.622,5.174,5.174,0,0,1-3.821-1.622,5.113,5.113,0,0,1-1.579-3.78,5.1,5.1,0,0,1,1.579-3.777A5.173,5.173,0,0,1,3847.183-2387.686Z" transform="translate(-3833.683 2387.686)" fill="url(#linear-gradient333)"></path>
+				</svg> <?php echo $wo['lang']['my_groups']; ?>
+					</div>
+					<?php if ($wo['config']['can_use_groups']) { ?>
+						<a class="btn btn-main btn-mat btn-mat-raised create-btn-bottom" href="<?php echo Wo_SeoLink('index.php?link1=create-group');?>" data-ajax="?link1=create-group"><svg height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g id="_03_Login" data-name="03 Login"><path d="m256 512a25 25 0 0 1 -25-25v-462a25 25 0 0 1 50 0v462a25 25 0 0 1 -25 25z"/><path d="m487 281h-462a25 25 0 0 1 0-50h462a25 25 0 0 1 0 50z"/></g></svg></a>
+					<?php } ?>
+				</div>
+			</div>
+
+			<div class="row">
+				<?php
+					$pages = Wo_GetMyGroups();
+					if (count($pages) > 0) {
+						foreach ($pages as $wo['group']) {
+							echo Wo_LoadPage('group/group-list');
+						}
+					} else {
+						echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3A2 2 0 0 0 3 5H5M7 3V5H9V3M11 3V5H13V3M15 3V5H17V3M19 3V5H21A2 2 0 0 0 19 3M3 7V9H5V7M7 7V11H11V7M13 7V11H17V7M19 7V9H21V7M3 11V13H5V11M19 11V13H21V11M7 13V17H11V13M13 13V17H17V13M3 15V17H5V15M19 15V17H21V15M3 19A2 2 0 0 0 5 21V19M7 19V21H9V19M11 19V21H13V19M15 19V21H17V19M19 19V21A2 2 0 0 0 21 19Z"></path></svg>' . $wo['lang']['no_groups_found'] . '</div>';
+					}
+				?>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<!-- .row -->
+	<?php echo Wo_LoadPage('sidebar/content');?>
+</div>

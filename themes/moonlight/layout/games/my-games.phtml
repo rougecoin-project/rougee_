@@ -1,0 +1,51 @@
+<div class="leftcol-sidebar"><?php echo Wo_LoadPage("sidebar/left-sidebar"); ?></div>
+<div class="page-margin">
+	<div class="row">
+		<div class="col-md-7 middlecol">
+		<div class="page-margin mt-0">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_innr big_size">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="28" viewBox="0 0 28 28">
+					<defs>
+						<linearGradient id="linear-gradientg" x1="0.251" y1="0.741" x2="0.251" gradientUnits="objectBoundingBox">
+						<stop offset="0" stop-color="#8c5afd"></stop>
+						<stop offset="1" stop-color="#13e2da"></stop>
+						</linearGradient>
+					</defs>
+					<path id="Path_6814" data-name="Path 6814" d="M3310.763,8344.5a6.4,6.4,0,0,1,2.4.472,6.232,6.232,0,0,1,3.39,3.389,6.41,6.41,0,0,1,.472,2.4v6.263h-6.263a6.263,6.263,0,1,1,0-12.525Zm0,15.474h6.263v6.263a6.241,6.241,0,0,1-1.061,3.479,6.226,6.226,0,0,1-6.426,2.667,6.232,6.232,0,0,1-4.922-4.922,6.222,6.222,0,0,1,2.667-6.426A6.235,6.235,0,0,1,3310.763,8359.974Zm15.474-15.474a6.263,6.263,0,1,1,0,12.525h-6.263v-6.263a6.238,6.238,0,0,1,6.263-6.263Zm-6.263,15.474h6.263a6.236,6.236,0,0,1,3.478,1.061,6.221,6.221,0,0,1,2.667,6.426,6.232,6.232,0,0,1-4.922,4.922,6.226,6.226,0,0,1-6.425-2.667,6.237,6.237,0,0,1-1.061-3.479Z" transform="translate(-3304.5 -8344.5)" fill="url(#linear-gradientg)"></path>
+					</svg> <?php echo $wo['lang']['games']; ?>
+					</div>
+				</div>
+			</div>
+			<div class="page-margin wow_content games-tabs-div">
+				<div class="wo_page_hdng pag_neg_padd pag_alone">
+					<div class="wo_page_hdng_menu">
+						<ul class="list-unstyled">
+							<li><a href="<?php echo Wo_SeoLink('index.php?link1=new-game'); ?>" data-ajax="?link1=new-game"><?php echo $wo['lang']['latest_games'] ?></a></li>
+							<li class="active"><a data-ajax="?link1=games" href="<?php echo Wo_SeoLink('index.php?link1=games');?>"><?php echo $wo['lang']['my_games']; ?></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row wow_games">
+				<?php
+					$pages = Wo_GetMyGames();
+					if (count($pages) > 0) {
+						foreach ($pages as $wo['game']) {
+							echo Wo_LoadPage('games/game-list');
+						}
+					} else {
+						echo '<div class="empty_state"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7,6H17A6,6 0 0,1 23,12A6,6 0 0,1 17,18C15.22,18 13.63,17.23 12.53,16H11.47C10.37,17.23 8.78,18 7,18A6,6 0 0,1 1,12A6,6 0 0,1 7,6M6,9V11H4V13H6V15H8V13H10V11H8V9H6M15.5,12A1.5,1.5 0 0,0 14,13.5A1.5,1.5 0 0,0 15.5,15A1.5,1.5 0 0,0 17,13.5A1.5,1.5 0 0,0 15.5,12M18.5,9A1.5,1.5 0 0,0 17,10.5A1.5,1.5 0 0,0 18.5,12A1.5,1.5 0 0,0 20,10.5A1.5,1.5 0 0,0 18.5,9Z"></path></svg>' . $wo['lang']['no_games_found'] . '</div>';
+					}
+				?>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<!-- .row -->
+</div>
+<div class="sidebar-conatnier">
+    <div class="col-md-3 sidebar rightcol">
+        <?php echo Wo_LoadPage('sidebar/content'); ?>
+    </div>
+</div>

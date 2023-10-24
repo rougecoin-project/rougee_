@@ -1,0 +1,2 @@
+window.vymsn_themes_path = "themes";
+window.vymsn_themes = ["blue","brightgradient","fairlounge","green","greenclosed","linearblue","marspurple","purple","redandyellow","royalty","s4","skyyellow","stars","vivo","wxl","yhl"];

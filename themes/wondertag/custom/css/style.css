@@ -1,0 +1,309 @@
+/* 
+
+Add here your custom css styles Example: p { text-align: center; color: red; } 
+
+*/
+
+body {
+    font-family: Roboto, sans-serif !important;
+}
+
+.post .panel {
+  	border-bottom: #664f4f3d 1px groove;
+
+}
+
+.promoted-post .post.boosted .panel {
+    box-shadow: 0 0px 0px 1px #00000000, 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06) !important;
+}
+
+@media (max-width: 500px) {
+.tag_post_full_img {
+    margin: 0 -10px !important;
+    border-radius: 15px !important;
+    background: rgb(255 255 255 / 0%) !important;
+}
+}
+
+@media (max-width: 500px) {
+.album-image img {
+    border-radius: 15px !important;
+}
+}
+
+@media (max-width: 500px) {
+.tag_vid_plyr, .tag_vid_plyr video {
+    border-radius: 15px;
+}
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 500px) {
+.dropdown-menu-right.dropdown-static-menu.tag_hdr_user_dropdown.tag_scroll.show {
+    animation: 0.1s ease-out 0s 1 slideInFromRight;
+}
+}
+
+@media (max-width: 500px) {
+.dropdown-menu-right.dropdown-static-menu.tag_hdr_user_dropdown.tag_scroll.hide {
+    animation: 0.1s ease-out 0s 1 slideOutToRight;
+}
+}
+
+@media (max-width: 500px) {
+.dropdown-menu.dropdown-menu-right.dropdown-static-menu.tag_scroll.show {
+    animation: 0.1s ease-out 0s 1 slideInFromTop;
+    max-height: calc(100% - 100px) !important;
+    top: 55px !important;
+}
+}
+
+
+.tag_header_top_p.side_open {
+  animation: 0.2s ease-out 0s 1 slideInFromLeft;
+}
+
+@media (max-width: 500px) {
+.tag_navbar_top .header-brand {
+    position: relative;
+    margin-left: 62px;
+    margin-right: 44px;
+}
+}
+
+body .green-audio-player {
+    background-color: #2e2e2e00 !important;
+}
+
+.tag_post_react_btn svg, .tag_post_react_btn .inline_post_emoji, .tag_post_react_btn .inline_post_count_emoji, .tag_post_actions .stat-item .icoo, .tag_post_foot_acticon svg, .tag_post_foot_acticon svg.feather, #like-button > svg {
+    background-color: rgb(255 255 255 / 0%) !important;
+}
+
+.tag_post_actions .stat-item > .active-like > svg {
+    background-color: rgb(255 255 255 / 0%) !important;
+}
+
+.neon-glow {
+    position: relative;
+    filter: brightness(150%) saturate(200%);
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon-glow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.8), 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.8);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+}
+
+@media (max-width: 1350px) {
+nav.navbar.navbar-default {
+    background: #000000e0 !important;
+    backdrop-filter: blur(10px); /* blur effect */
+    -webkit-backdrop-filter: blur(10px); /* for Safari */
+}
+}
+
+.tag_stories_on_home .tag_stories_mobi .status-list li a {
+    padding-bottom: 100% !important;
+    border-radius: -15px !important;
+}
+
+@media (max-width: 520px) {
+.tag_navbar_top .tag_header > .search-container {
+    left: 4px;
+  	z-index: 0;
+}
+}
+
+@media (max-width: 767px) {
+  #vaneayoung-chat-boxes {
+    display: block !important;
+  }
+}
+
+
+
+.image-container img {
+    position: relative;
+    left: 90px;
+}
+
+.copyable-container {
+	display: flex;
+    padding-left: 63px;
+    position: relative;
+    padding-right: 185px;
+    top: 27px;
+    margin-top: -10px;
+}
+
+.copyable-text {
+  	flex-grow: 1;
+}
+
+.copy-icon {
+  	cursor: pointer;
+  	margin-left: 10px;
+}
+
+.posts-count {
+      top: 45px !important;
+  	display: none !important;
+}
+
+.tag_home_filters {
+    margin: -34px -10px 0 !important;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.btn-gradient {
+    background-size: 200% 200% !important;
+    background-image: linear-gradient(45deg, #ff6ec4, #7873f5) !important;
+    color: white !important;
+    border: none !important;
+    outline: none !important;
+    transition: background-position 2s ease-in-out infinite !important;
+    animation: gradient 5s ease infinite !important;
+	}
+
+.btn-gradient:hover {
+    animation: gradient 3s ease infinite !important;
+	}
+
+.active {
+  bottom: 3px !important;
+  position: relative !important;
+	}
+
+.left-sidebar>ul>li>a,
+.left-sidebar>ul>div>li>a,
+.wow_side_post_fltr.wow_side_post_fltr-products a,
+.wow_side_post_fltr.wow_side_post_fltr-forum a,
+.wow_side_post_fltr.wow_side_post_fltr-groups a,
+.wow_side_post_fltr.wow_side_post_fltr-pages a {
+    border-radius: 5px;
+    padding: 8px 10px;
+    display: block;
+    margin: 2px 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    transition: all .2s ease;
+    color: #050505;
+	}
+	
+.tag_post_hdr_menu {
+      z-index: 10;
+	}
+
+@media (max-width: 520px){
+.greetalert .small-texts {
+    font-size: 16px !important;
+	}
+	}
+
+.tag_lbox_stories .status-list li a > img {
+  border-radius: 50px !important;
+	}
+
+.cameraFeed {
+    position: relative;
+    margin-left: -120px;
+  z-index: -1;
+	}
+
+.embed-responsive-16by9::before {
+    padding-top: 178.25% !important;
+	}
+
+
+
+@media (max-width: 480px) {
+.tag_navbar_top_right .tag_hdr_right {
+    left: 54px !important;
+      margin: 0px 4px -11px 12px;
+	}
+}
+
+.tag_switch_noti > li > a.active, .tag_stup_switch > li > a.active {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 2.15) !important;
+}
+
+.embed-responsive {
+    width: 108% !important;
+    margin: 0px 0px 0px -14px;
+}
+
+.tag_sec_toolbar a {
+    padding: 18.5px !important;
+    margin-left: -8px;
+}
+
+@media (max-width: 768px) {
+.tag_hdr_right > .dropdown, .profile-avatar-changer .btn svg {
+    margin: 2px !important;
+	}
+}
+
+
+.head_name_links {
+    top: -6px;
+    left: -1px;
+}
+
+ul {
+  list-style: none;
+}
+
+.no-marker {
+  list-style: none;
+}

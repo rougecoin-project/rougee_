@@ -1,0 +1,94 @@
+#vymsn_header_txttitle {
+    font-size: 21.5px;
+    font-weight: 500;
+}#vymsn_header_count {
+    font-weight: bold;
+    font-size: 19.5px;
+}.pmessenger {
+    width: 100%;
+    position: fixed;
+    background-color: rgb(255 255 255);
+    display: flex;
+    height: 100%;
+    z-index: 1050;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+}.pmessenger-contact-name {
+
+    font-weight: 500;
+
+}.xweeWrt {
+
+    font-weight: 500;
+}.menuitemcompact {
+    font-size: 16.5px;
+    font-weight: 500;
+}.MenuItem.compact ._3dxr3_tit {
+    font-size: 15.5px;
+    font-weight: 500;
+
+}.MessageMeta .message-time {
+    margin-right: 3px;
+}.MessageMeta .message-time, .MessageMeta .message-signature, .MessageMeta .message-views {
+    font-size: 11.5px;
+}.messenger_media_in_msg .message-time{
+	height: 15px;
+}li._39bk {
+    padding: 5px 0px;
+    line-height: 24px;
+    font-size: 12.5px;
+}.pmessenger .emojionearea .emojionearea-editor{
+min-height: 40px!important;
+    max-height: 110px!important;
+    padding: 11px 5px;
+}.svg-appendix {
+    bottom: -1px;
+    right: -9px;
+}.Menu421 .bubble{
+	min-width: 240px;
+}.vymsn_rightsidebar_title {
+    font-size: 19.5px;
+    font-weight: 500;
+}.pmessenger ul, .pmessenger ol, .pmessenger li, .sc_modern_popup ul, .sc_modern_popup ol, .sc_modern_popup li{
+	list-style: none;
+}.vy_ms__globalpopup.js__vy_ms__globalpopup {
+    z-index: 10001;
+}.vymsn_wondertaggohome{
+	display:block!important;
+}
+.vymsn_wondertaggohome .material-symbols-outlined{
+	color: rgb(202 202 202);
+    font-size: 30px;
+}._touch .pmessenger.vy_ms__mob_fscreen, ._touch .messenger_mobile_opts {
+    z-index: 1046;
+}.vy_msn_smartphone_touch .svg-appendix {
+    bottom: -1px;
+    right: -8px;
+}#vymsn_moderndropdown.vymsn_for_media{
+	    margin-left: 4%;
+}.vy_msn_smartphone_touch .vy_ms__groupusermsgs:not(.me) .pmessenger-message-txt:last-child .messenger_text_col:before {
+    bottom: 4px;
+    left: -8px;
+}.vy_msn_smartphone_touch .vy_ms__groupusermsgs.me .pmessenger-message-txt:last-child .messenger_text_col:after {
+    right: -13px;
+    bottom: 3px;
+}.vy_msn_smartphone_touch .pmessenger .emojionearea .emojionearea-editor {
+    padding: 5px;
+}.messenger_mob_option__delim {
+    margin: 12px 7px -10px 0;
+    background: rgb(133 133 133);
+    width: 100%;
+    height: 1px;
+}._touch #sc_modern_popup, ._touch .vy_ms__globalpopup, ._touch .vy_call_popup_design {
+    z-index: 1056!important;
+}.mshortcut-u-name-str {
+    font-size: 17.5px;
+}.messenger-shortcut ul,.messenger-shortcut ol {
+    list-style: none;
+}.messenger-shortcut .txt_pmessenger-text {
+
+    font-size: 15.5px;
+}.messenger-shortcut #vymsn_moderndropdown {
+    margin-left: 0;
+}
